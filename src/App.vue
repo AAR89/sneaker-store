@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, reactive } from 'vue';
 import axios from 'axios';
 
 import HeaderComponent from './components/HeaderComponent.vue';
@@ -8,32 +8,39 @@ import DrawerComponent from './components/DrawerComponent.vue';
 
 const items = ref([]);
 
-const sortBy = ref('');
-const searchQuery = ref('');
+const filters = reactive({
+  sortBy: 'title',
+  searchQuery: ''
+});
 
-const onChangeSelect = (event) => {
-  sortBy.value = event.target.value;
+const fetchItems = async () => {
+  try {
+    const params = {
+      sortBy: filters.sortBy
+    };
+
+    if (filters.searchQuery) {
+      params.title = `*${filters.searchQuery}*`;
+    }
+
+    const { data } = await axios.get(`https://8e61f9ea046fe2d1.mokky.dev/items`, { params });
+    items.value = data;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
-onMounted(async () => {
-  try {
-    const { data } = await axios.get('https://8e61f9ea046fe2d1.mokky.dev/items');
-    items.value = data;
-  } catch (err) {
-    console.log(err);
-  }
-});
+const onChangeSelect = (event) => {
+  filters.sortBy = event.target.value;
+};
 
-watch(sortBy, async () => {
-  try {
-    const { data } = await axios.get(
-      'https://8e61f9ea046fe2d1.mokky.dev/items?sortBy=' + sortBy.value
-    );
-    items.value = data;
-  } catch (err) {
-    console.log(err);
-  }
-});
+const onChangeSearchInput = (event) => {
+  filters.searchQuery = event.target.value;
+};
+
+onMounted(fetchItems);
+
+watch(filters, fetchItems);
 </script>
 
 <template>
@@ -46,6 +53,7 @@ watch(sortBy, async () => {
           <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
           <div class="flex gap-4">
+            <!-- v-model="filters.sortBy" -->
             <select
               @change="onChangeSelect"
               class="py-2 px-3 border rounded-md outline-none"
@@ -58,7 +66,9 @@ watch(sortBy, async () => {
             </select>
             <div class="relative">
               <img class="absolute left-4 top-3" src="/search.svg" alt="" />
+              <!-- v-model="filters.searchQuery" -->
               <input
+                @input="onChangeSearchInput"
                 class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400 transition"
                 type="text"
                 placeholder="Поиск..."
