@@ -1,21 +1,23 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import axios from 'axios'
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
 
-import HeaderComponent from './components/HeaderComponent.vue'
-import CardListComponent from './components/CardListComponent.vue'
-import DrawerComponent from './components/DrawerComponent.vue'
+import HeaderComponent from './components/HeaderComponent.vue';
+import CardListComponent from './components/CardListComponent.vue';
+import DrawerComponent from './components/DrawerComponent.vue';
 
-const items = ref([])
+const items = ref([]);
+
+const sortBy = ref('');
 
 onMounted(async () => {
   try {
-    const { data } = await axios.get('https://8e61f9ea046fe2d1.mokky.dev/items')
-    items.value = data
+    const { data } = await axios.get('https://8e61f9ea046fe2d1.mokky.dev/items');
+    items.value = data;
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 </script>
 
 <template>

@@ -1,16 +1,16 @@
 <script setup>
-import CardComponent from './CardComponent.vue'
+import CardComponent from './CardComponent.vue';
 defineProps({
   items: Array
-})
+});
 
 const onClickAdd = () => {
-  console.log('Added')
-}
+  console.log('Added');
+};
 
 const onClickFavorite = () => {
-  console.log('Add to favorites')
-}
+  console.log('Add to favorites');
+};
 </script>
 
 <template>

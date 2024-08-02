@@ -1,6 +1,6 @@
 <script setup>
-import CartListItemComp from './CartListItemComp.vue'
-import DrawerHeadComp from './DrawerHeadComp.vue'
+import CartListItemComp from './CartListItemComp.vue';
+import DrawerHeadComp from './DrawerHeadComp.vue';
 </script>
 
 <template>
