@@ -19,5 +19,26 @@ const onClickFavorite = () => {
       :onClickAdd="onClickAdd"
       :onClickFavorite="onClickFavorite"
     />
+    <CardComponent
+      imageUrl="/sneakers/sneakers-1.jpg"
+      title="Мужские Кроссовки Nike Blazer Mid Suede"
+      :price="1285"
+      :onClickAdd="onClickAdd"
+      :onClickFavorite="onClickFavorite"
+    />
+    <CardComponent
+      imageUrl="/sneakers/sneakers-1.jpg"
+      title="Мужские Кроссовки Nike Blazer Mid Suede"
+      :price="1285"
+      :onClickAdd="onClickAdd"
+      :onClickFavorite="onClickFavorite"
+    />
+    <CardComponent
+      imageUrl="/sneakers/sneakers-1.jpg"
+      title="Мужские Кроссовки Nike Blazer Mid Suede"
+      :price="1285"
+      :onClickAdd="onClickAdd"
+      :onClickFavorite="onClickFavorite"
+    />
   </div>
 </template>
