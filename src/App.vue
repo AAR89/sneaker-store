@@ -4,14 +4,30 @@ import axios from 'axios';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import CardListComponent from './components/CardListComponent.vue';
-// import DrawerComponent from './components/DrawerComponent.vue';
+import DrawerComponent from './components/DrawerComponent.vue';
 
 const items = ref([]);
+const cart = ref([]);
+
+const drawerOpen = ref(false);
+
+const closeDrawer = () => {
+  drawerOpen.value = false;
+};
+
+const openDrawer = () => {
+  drawerOpen.value = true;
+};
 
 const filters = reactive({
   sortBy: 'title',
   searchQuery: ''
 });
+
+const addToCart = (item) => {
+  cart.value.push(item);
+  console.log(item);
+};
 
 const onChangeSelect = (event) => {
   filters.sortBy = event.target.value;
@@ -85,26 +101,29 @@ const addToFavorite = async (item) => {
   }
 };
 
-provide('addToFavorite', addToFavorite);
-
 onMounted(async () => {
   await fetchItems();
   await fetchFavorites();
 });
 
 watch(filters, fetchItems);
+
+provide('cartActions', {
+  closeDrawer,
+  openDrawer
+});
 </script>
 
 <template>
   <div>
-    <!-- <DrawerComponent /> -->
+    <DrawerComponent v-if="drawerOpen" />
     <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
-      <HeaderComponent />
+      <HeaderComponent @open-drawer="openDrawer" />
       <div class="p-10">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center max-md:flex-col">
           <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
 
-          <div class="flex gap-4">
+          <div class="flex gap-4 max-lg:flex-col">
             <!-- v-model="filters.sortBy" -->
             <select
               @change="onChangeSelect"
@@ -128,7 +147,11 @@ watch(filters, fetchItems);
             </div>
           </div>
         </div>
-        <CardListComponent :items="items" @addToFavorite="addToFavorite" />
+        <CardListComponent
+          :items="items"
+          @add-to-favorite="addToFavorite"
+          @add-to-cart="addToCart"
+        />
       </div>
     </div>
   </div>

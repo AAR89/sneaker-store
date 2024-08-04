@@ -1,12 +1,17 @@
 <script setup>
+import { inject } from 'vue';
 import CartListItemComp from './CartListItemComp.vue';
 import DrawerHeadComp from './DrawerHeadComp.vue';
+const { closeDrawer } = inject('cartActions');
 </script>
 
 <template>
   <div>
-    <div class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"></div>
-    <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8">
+    <div
+      @click="closeDrawer"
+      class="fixed top-0 left-0 h-full w-full bg-black z-10 opacity-70"
+    ></div>
+    <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8 max-md:w-full">
       <DrawerHeadComp />
       <CartListItemComp />
 
