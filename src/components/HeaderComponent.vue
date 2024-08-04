@@ -12,7 +12,7 @@ const emit = defineEmits('openDrawer');
       </div>
     </div>
 
-    <ul class="flex items-center gap-10 max-md:flex-col mt-4 gap-2">
+    <ul class="flex items-center gap-10 max-md:flex-col mt-0 gap-2">
       <li
         @click="() => emit('openDrawer')"
         class="flex items-center gap-3 text-gray-500 cursor-pointer hover:text-black"
