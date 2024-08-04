@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import CardListComponent from './components/CardListComponent.vue';
-import DrawerComponent from './components/DrawerComponent.vue';
+// import DrawerComponent from './components/DrawerComponent.vue';
 
 const items = ref([]);
 
