@@ -25,8 +25,14 @@ const filters = reactive({
 });
 
 const addToCart = (item) => {
-  cart.value.push(item);
-  console.log(item);
+  if (!item.isAdded) {
+    cart.value.push(item);
+    item.isAdded = true;
+  } else {
+    cart.value.splice(cart.value.indexOf(item), 1);
+    item.isAdded = false;
+  }
+  console.log(cart);
 };
 
 const onChangeSelect = (event) => {
@@ -121,9 +127,9 @@ provide('cartActions', {
       <HeaderComponent @open-drawer="openDrawer" />
       <div class="p-10">
         <div class="flex justify-between items-center max-md:flex-col">
-          <h2 class="text-3xl font-bold mb-8">Все кроссовки</h2>
+          <h2 class="text-3xl font-bold mb-8 max-md:text-2xl">Все кроссовки</h2>
 
-          <div class="flex gap-4 max-lg:flex-col">
+          <div class="flex text-gray-500 gap-4 max-lg:flex-col">
             <!-- v-model="filters.sortBy" -->
             <select
               @change="onChangeSelect"
