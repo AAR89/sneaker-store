@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref, watch, reactive, provide } from 'vue';
+import { onMounted, ref, watch, reactive, provide, computed } from 'vue';
 import axios from 'axios';
 
 import HeaderComponent from './components/HeaderComponent.vue';
@@ -10,6 +10,8 @@ const items = ref([]);
 const cart = ref([]);
 
 const drawerOpen = ref(false);
+
+const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 
 const closeDrawer = () => {
   drawerOpen.value = false;
@@ -134,7 +136,7 @@ provide('cart', {
   <div>
     <DrawerComponent v-if="drawerOpen" />
     <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
-      <HeaderComponent @open-drawer="openDrawer" />
+      <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
         <div class="flex justify-between items-center max-md:flex-col">
           <h2 class="text-3xl font-bold mb-8 max-md:text-2xl">Все кроссовки</h2>
