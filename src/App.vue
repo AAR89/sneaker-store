@@ -25,14 +25,21 @@ const filters = reactive({
 });
 
 const addToCart = (item) => {
+  cart.value.push(item);
+  item.isAdded = true;
+};
+
+const removeFromCart = (item) => {
+  cart.value.splice(cart.value.indexOf(item), 1);
+  item.isAdded = false;
+};
+
+const onClickAddPlus = (item) => {
   if (!item.isAdded) {
-    cart.value.push(item);
-    item.isAdded = true;
+    addToCart(item);
   } else {
-    cart.value.splice(cart.value.indexOf(item), 1);
-    item.isAdded = false;
+    removeFromCart(item);
   }
-  console.log(cart);
 };
 
 const onChangeSelect = (event) => {
@@ -114,9 +121,12 @@ onMounted(async () => {
 
 watch(filters, fetchItems);
 
-provide('cartActions', {
+provide('cart', {
+  cart,
   closeDrawer,
-  openDrawer
+  openDrawer,
+  addToCart,
+  removeFromCart
 });
 </script>
 
@@ -156,7 +166,7 @@ provide('cartActions', {
         <CardListComponent
           :items="items"
           @add-to-favorite="addToFavorite"
-          @add-to-cart="addToCart"
+          @add-to-cart="onClickAddPlus"
         />
       </div>
     </div>
