@@ -87,7 +87,9 @@ provide('cart', {
     >
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
-        <HomePage />
+        <RouterView>
+          <HomePage />
+        </RouterView>
       </div>
     </div>
   </div>
