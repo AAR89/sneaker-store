@@ -146,7 +146,7 @@ onMounted(async () => {
 watch(filters, fetchItems);
 
 watch(cart, () => {
-  items.value.map((item) => ({
+  items.value = items.value.map((item) => ({
     ...item,
     isAdded: false
   }));
