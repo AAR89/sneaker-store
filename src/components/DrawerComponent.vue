@@ -2,6 +2,8 @@
 import { inject } from 'vue';
 import CartListItemComp from './CartListItemComp.vue';
 import DrawerHeadComp from './DrawerHeadComp.vue';
+import InfoBlockComp from './InfoBlockComp.vue';
+
 const { closeDrawer } = inject('cart');
 
 defineProps({
@@ -22,9 +24,17 @@ const emit = defineEmits('createOrder');
     ></div>
     <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8 max-md:w-full">
       <DrawerHeadComp />
-      <CartListItemComp />
 
-      <div class="flex flex-col gap-4 mt-7">
+      <InfoBlockComp
+        v-show="!totalPrice"
+        title="Корзина пуста"
+        description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+        image-url="package-icon.png"
+      />
+
+      <CartListItemComp v-show="totalPrice" />
+
+      <div v-show="totalPrice" class="flex flex-col gap-4 mt-7">
         <div class="flex gap-2">
           <span>Итого:</span>
           <div class="flex-1 border-b border-dashed"></div>
