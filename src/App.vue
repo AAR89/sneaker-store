@@ -144,6 +144,11 @@ onMounted(async () => {
 
   await fetchItems();
   await fetchFavorites();
+
+  items.value = items.value.map((item) => ({
+    ...item,
+    isAdded: cart.value.some((cartItem) => cartItem.id === item.id)
+  }));
 });
 
 watch(filters, fetchItems);

@@ -13,6 +13,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "axios": "^1.7.3",
     "vue": "^3.4.29"
   },

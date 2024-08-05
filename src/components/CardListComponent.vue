@@ -9,7 +9,7 @@ const emit = defineEmits(['addToFavorite', 'addToCart']);
 
 <template>
   <div class="mt-10">
-    <div class="grid lg:grid-cols-4 gap-5 max-md:grid-cols-1 max-lg:grid-cols-2">
+    <div class="grid lg:grid-cols-4 gap-5 max-md:grid-cols-1 max-lg:grid-cols-2" v-auto-animate>
       <CardComponent
         v-for="item in items"
         :key="item.id"
