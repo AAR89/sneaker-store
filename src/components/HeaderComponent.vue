@@ -10,13 +10,15 @@ const emit = defineEmits('openDrawer');
   <header
     class="flex justify-between items-center border-b border-slate-200 px-10 py-8 max-md:flex-col gap-4"
   >
-    <div class="flex items-center gap-4">
-      <img src="/logo.png" alt="Logo" class="w-10" />
-      <div>
-        <h2 class="text-xl font-bold uppercase">Sneaker shop</h2>
-        <p class="text-slate-400">Магазин кроссовок</p>
+    <RouterLink to="/sneaker-store">
+      <div class="flex items-center gap-4">
+        <img src="/logo.png" alt="Logo" class="w-10" />
+        <div>
+          <h2 class="text-xl font-bold uppercase">Sneaker shop</h2>
+          <p class="text-slate-400">Магазин кроссовок</p>
+        </div>
       </div>
-    </div>
+    </RouterLink>
 
     <ul class="flex items-center gap-10 max-md:flex-col mt-0 gap-2">
       <li
@@ -27,10 +29,12 @@ const emit = defineEmits('openDrawer');
         <b>{{ totalPrice }} руб.</b>
       </li>
 
-      <li class="flex items-center gap-3 text-gray-500 cursor-pointer hover:text-black">
-        <img src="/heart.svg" alt="Cart" />
-        <span>Закладки</span>
-      </li>
+      <RouterLink to="/sneaker-store/favorites">
+        <li class="flex items-center gap-3 text-gray-500 cursor-pointer hover:text-black">
+          <img src="/heart.svg" alt="Cart" />
+          <span>Закладки</span>
+        </li>
+      </RouterLink>
 
       <li class="flex items-center gap-3 text-gray-500 cursor-pointer hover:text-black">
         <img src="/profile.svg" alt="Cart" />
