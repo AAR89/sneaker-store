@@ -135,7 +135,7 @@ provide('cart', {
 <template>
   <div>
     <DrawerComponent v-if="drawerOpen" />
-    <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14">
+    <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl mt-14 max-md:mt-4 w-11/12">
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
         <div class="flex justify-between items-center max-md:flex-col">

@@ -7,7 +7,9 @@ const emit = defineEmits('openDrawer');
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-slate-200 px-10 py-8 max-md:flex-col">
+  <header
+    class="flex justify-between items-center border-b border-slate-200 px-10 py-8 max-md:flex-col gap-4"
+  >
     <div class="flex items-center gap-4">
       <img src="/logo.png" alt="Logo" class="w-10" />
       <div>
