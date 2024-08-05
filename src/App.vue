@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
+import HomePage from './pages/HomePage.vue';
 
 const cart = ref([]);
 const isCreatingOrder = ref(false);
@@ -85,7 +86,9 @@ provide('cart', {
       class="bg-white flex flex-col w-4/5 m-auto rounded-xl shadow-xl mt-14 max-md:mt-4 w-11/12 justify-center"
     >
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
-      <div class="p-10"></div>
+      <div class="p-10">
+        <HomePage />
+      </div>
     </div>
   </div>
 </template>

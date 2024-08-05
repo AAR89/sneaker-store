@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { onMounted, ref, watch, reactive, inject } from 'vue';
 
-import CardListComponent from '.CardListComponent.vue';
+import CardListComponent from '../components/CardListComponent.vue';
 
 const items = ref([]);
 const filters = reactive({
