@@ -133,7 +133,7 @@ watch(filters, fetchItems);
           <option value="-price">По цене (сначала дороже)</option>
         </select>
         <div class="relative">
-          <img class="absolute left-4 top-3" src="/sneaker-store/logos/search.svg" alt="" />
+          <img class="absolute left-4 top-3" src="/search.svg" alt="" />
           <!-- v-model.lazy="filters.searchQuery" -->
           <input
             @input="onChangeSearchInput"

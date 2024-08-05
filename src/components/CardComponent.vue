@@ -16,7 +16,7 @@ defineProps({
     class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
   >
     <img
-      :src="!isFavorite ? '/sneaker-store/logos/like-1.svg' : '/sneaker-store/logos/like-2.svg'"
+      :src="!isFavorite ? './like-1.svg' : './like-2.svg'"
       alt="Like 1 logo"
       class="absolute top-8 left-8 fill-black"
       @click="onClickFavorite"
@@ -31,7 +31,7 @@ defineProps({
       </div>
       <img
         @click="onClickAdd"
-        :src="!isAdded ? '/sneaker-store/logos/plus.svg' : '/sneaker-store/logos/checked.svg'"
+        :src="!isAdded ? './plus.svg' : './checked.svg'"
         alt="Plus logo"
       />
     </div>
