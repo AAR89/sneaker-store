@@ -17,32 +17,32 @@ const { closeDrawer } = inject('cart');
     <p class="text-gray-400 mt-2">{{ description }}</p>
     <button
       @click="closeDrawer"
-      class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
+      class="flex items-center justify-center gap-3 mt-4 bg-lime-500 w-auto rounded-xl py-3 px-6 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
     >
-      <!-- <svg
-        class="opacity-30 cursor-pointer rotate-180 fill-white hover:opacity-100 transition hover:-translate-x-1"
+      <svg
+        class="cursor-pointer rotate-180 hover:transition hover:-translate-x-1"
         width="16"
         height="14"
         viewBox="0 0 16 14"
-        fill="white"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
           fill="white"
           d="M1 7H14.7143"
-          stroke="black"
+          stroke="white"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
         <path
           d="M8.71436 1L14.7144 7L8.71436 13"
-          stroke="black"
+          stroke="white"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
         />
-      </svg> -->
+      </svg>
       Вернуться к заказам
     </button>
   </div>
