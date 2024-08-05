@@ -38,7 +38,7 @@ const emit = defineEmits('createOrder');
         </div>
 
         <button
-          @click="() => emit('createOrder')"
+          @click="() => emit('createOrder', 'onClickRemove')"
           :disabled="buttonDisabled"
           class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
         >
