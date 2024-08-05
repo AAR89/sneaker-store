@@ -55,22 +55,6 @@ const createOrder = async () => {
     console.log(err);
   } finally {
     isCreatingOrder.value = false;
-    setNoAddItems();
-  }
-};
-
-const setNoAddItems = async () => {
-  try {
-    const params = {
-      sortBy: filters.sortBy
-    };
-    const { data } = await axios.get(`https://8e61f9ea046fe2d1.mokky.dev/items`, { params });
-    items.value = data.map((obj) => ({
-      ...obj,
-      isAdded: false
-    }));
-  } catch (err) {
-    console.log(err);
   }
 };
 
@@ -160,6 +144,13 @@ onMounted(async () => {
 });
 
 watch(filters, fetchItems);
+
+watch(cart, () => {
+  items.value.map((item) => ({
+    ...item,
+    isAdded: false
+  }));
+});
 
 provide('cart', {
   cart,
