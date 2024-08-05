@@ -3,6 +3,15 @@ import { inject } from 'vue';
 import CartListItemComp from './CartListItemComp.vue';
 import DrawerHeadComp from './DrawerHeadComp.vue';
 const { closeDrawer } = inject('cart');
+
+defineProps({
+  totalPrice: Number,
+  vatPrice: Number,
+  isCreatingOrder: Boolean,
+  buttonDisabled: Boolean
+});
+
+const emit = defineEmits('createOrder');
 </script>
 
 <template>
@@ -19,17 +28,18 @@ const { closeDrawer } = inject('cart');
         <div class="flex gap-2">
           <span>Итого:</span>
           <div class="flex-1 border-b border-dashed"></div>
-          <b>12900 руб.</b>
+          <b>{{ totalPrice }} руб.</b>
         </div>
 
         <div class="flex gap-2">
-          <span>Налог:</span>
+          <span>Налог 5%:</span>
           <div class="flex-1 border-b border-dashed"></div>
-          <b>900 руб.</b>
+          <b>{{ vatPrice }} руб.</b>
         </div>
 
         <button
-          disabled=""
+          @click="() => emit('createOrder')"
+          :disabled="buttonDisabled"
           class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
         >
           Оформить заказ
