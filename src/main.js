@@ -10,7 +10,7 @@ import FavoritesPage from './pages/FavoritesPage.vue';
 const app = createApp(App);
 
 const routes = [
-  { path: '/sneaker-store', name: 'HomePage', component: HomePage },
+  { path: '/sneaker-store/', name: 'HomePage', component: HomePage },
   { path: '/sneaker-store/favorites/', name: 'FavoritesPage', component: FavoritesPage }
 ];
 const router = createRouter({
