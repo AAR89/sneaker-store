@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { onMounted, ref, watch, reactive, inject } from 'vue';
 
-import CardListComponent from '../components/CardListComponent.vue';
+import CardListComponent from '@/components/CardListComponent.vue';
 
 const items = ref([]);
 const filters = reactive({
@@ -32,7 +32,7 @@ const addToFavorite = async (item) => {
   try {
     if (!item.isFavorite) {
       const obj = {
-        parentId: item.id
+        item_id: item.id
       };
       item.isFavorite = true;
 
@@ -53,7 +53,7 @@ const fetchFavorites = async () => {
   try {
     const { data: favorites } = await axios.get(`https://8e61f9ea046fe2d1.mokky.dev/favorites`);
     items.value = items.value.map((item) => {
-      const favorite = favorites.find((favorite) => favorite.parentId === item.id);
+      const favorite = favorites.find((favorite) => favorite.item_id === item.id);
 
       if (!favorite) {
         return item;
