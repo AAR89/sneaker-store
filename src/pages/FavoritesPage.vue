@@ -8,7 +8,6 @@ defineProps({
 });
 
 const favorites = ref([]);
-// const emit = defineEmits(['addToFavorite', 'addToCart']);
 
 onMounted(async () => {
   try {

@@ -1,19 +1,41 @@
 <script setup>
-import { inject } from 'vue';
+import { ref, computed, inject } from 'vue';
+import axios from 'axios';
 import CartListItemComp from './CartListItemComp.vue';
 import DrawerHeadComp from './DrawerHeadComp.vue';
 import InfoBlockComp from './InfoBlockComp.vue';
 
-const { closeDrawer } = inject('cart');
-
-defineProps({
+const props = defineProps({
   totalPrice: Number,
-  vatPrice: Number,
-  isCreatingOrder: Boolean,
-  buttonDisabled: Boolean
+  vatPrice: Number
 });
 
-const emit = defineEmits('createOrder');
+const { cart, closeDrawer } = inject('cart');
+
+const isCreating = ref(false);
+const orderId = ref(false);
+
+const createOrder = async () => {
+  try {
+    isCreating.value = true;
+    const { data } = await axios.post('https://8e61f9ea046fe2d1.mokky.dev/orders', {
+      items: cart.value,
+      totalPrice: props.totalPrice
+    });
+    cart.value = [];
+
+    orderId.value = data.id;
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  } finally {
+    isCreating.value = false;
+  }
+};
+
+const cartIsEmpty = computed(() => cart.value.length === 0);
+const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value);
 </script>
 
 <template>
@@ -25,11 +47,18 @@ const emit = defineEmits('createOrder');
     <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8 max-md:w-full">
       <DrawerHeadComp />
 
-      <div class="flex h-full items-center" v-if="!totalPrice">
+      <div v-if="!totalPrice || orderId" class="flex h-full items-center">
         <InfoBlockComp
+          v-if="!totalPrice && !orderId"
+          image-url="package-icon.png"
           title="Корзина пуста"
           description="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
-          image-url="package-icon.png"
+        />
+        <InfoBlockComp
+          v-if="orderId"
+          image-url="order-success-icon.png"
+          title="Заказ оформлен!"
+          :description="`Ваш заказ #${orderId} скоро будет передан курьерской доставке.`"
         />
       </div>
 
@@ -50,7 +79,7 @@ const emit = defineEmits('createOrder');
           </div>
 
           <button
-            @click="() => emit('createOrder', 'onClickRemove')"
+            @click="createOrder"
             :disabled="buttonDisabled"
             class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
           >
