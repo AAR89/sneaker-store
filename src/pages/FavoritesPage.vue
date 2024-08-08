@@ -23,7 +23,9 @@ onMounted(async () => {
 
 <template>
   <div>
-    <h2 class="text-3xl font-bold mb-8 max-md:text-2xl">Мои закладки</h2>
+    <h2 class="flex justify-start text-3xl font-bold mb-8 max-md:text-2xl max-md:justify-center">
+      Мои закладки
+    </h2>
 
     <CardListComponent :items="favorites" is-favorites />
     <!-- @add-to-cart="() => emit('addToCart', item)" 

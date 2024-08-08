@@ -60,7 +60,7 @@ provide('cart', {
       @create-order="createOrder"
     />
     <div
-      class="bg-white flex flex-col w-4/5 m-auto rounded-xl shadow-xl mt-14 max-md:mt-4 w-11/12 justify-center"
+      class="bg-white flex flex-col w-4/5 m-auto rounded-xl shadow-xl mt-14 max-md:mt-4 mb-4 w-11/12 justify-center"
     >
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
