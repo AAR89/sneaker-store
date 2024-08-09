@@ -8,7 +8,7 @@ const emit = defineEmits('openDrawer');
 
 <template>
   <header
-    class="bg-white flex justify-between items-center border-b border-slate-200 px-10 py-8 sticky inset-0 z-[1] bg-opacity-1 max-md:flex-col gap-4"
+    class="bg-white flex justify-between items-center rounded-t-lg border-b border-slate-200 px-10 py-8 sticky inset-0 z-[1] bg-opacity-1 max-md:flex-col gap-4"
   >
     <RouterLink to="/sneaker-store/">
       <div class="flex items-center gap-4">
