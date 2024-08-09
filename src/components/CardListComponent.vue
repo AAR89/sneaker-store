@@ -17,6 +17,7 @@ const emit = defineEmits(['addToFavorite', 'addToCart']);
         :id="item.id"
         :title="item.title"
         :price="item.price"
+        :sizes="item.sizes"
         :imageUrl="item.imageUrl"
         :onClickAdd="() => emit('addToCart', item)"
         :onClickFavorite="() => emit('addToFavorite', item)"

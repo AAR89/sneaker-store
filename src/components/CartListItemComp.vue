@@ -11,6 +11,7 @@ const { cart, removeFromCart } = inject('cart');
       v-for="item in cart"
       :key="item.id"
       :title="item.title"
+      :sizes="item.sizes"
       :price="item.price"
       :image-url="item.imageUrl"
       @on-click-remove="() => removeFromCart(item)"

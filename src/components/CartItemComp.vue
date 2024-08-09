@@ -7,12 +7,10 @@ defineProps({
   title: String,
   price: Number
 });
-
-const classHeader = 'flex items-center gap-4 border border-slate-200 p-4 rounded-xl';
 </script>
 
 <template>
-  <div :class="classHeader">
+  <div class="flex items-center gap-4 border border-slate-200 p-4 rounded-xl">
     <img class="w-16 h-16" :src="imageUrl" :alt="title" />
 
     <div class="flex flex-col flex-1">

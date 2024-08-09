@@ -1,14 +1,20 @@
 <script setup>
+import { provide } from 'vue';
+
 defineProps({
   id: Number,
   imageUrl: String,
   title: String,
   price: Number,
+  sizes: Array,
   isFavorite: Boolean,
   isAdded: Boolean,
   onClickAdd: Function,
   onClickFavorite: Function
 });
+
+let selected = '';
+provide('selected', selected);
 </script>
 
 <template>
@@ -29,6 +35,10 @@ defineProps({
       <div class="flex flex-col">
         <span class="text-slate-400">Цена:</span>
         <b>{{ price }} руб.</b>
+        <select name="sizes" id="sizes" v-model="selected">
+          <option disabled value="">Размер</option>
+          <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
+        </select>
       </div>
       <img
         v-show="onClickAdd"
