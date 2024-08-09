@@ -31,12 +31,11 @@ const addToFavorite = async (item) => {
       const { data } = await axios.post(`https://8e61f9ea046fe2d1.mokky.dev/favorites`, obj);
 
       item.favoriteId = data.id;
-      fetchFavorites();
     } else {
       item.isFavorite = false;
       await axios.delete(`https://8e61f9ea046fe2d1.mokky.dev/favorites/${item.favoriteId}`);
       item.favoriteId = null;
-      fetchFavorites();
+      favorites.value.splice(favorites.value.indexOf(item), 1);
     }
   } catch (err) {
     console.log(err);
@@ -51,13 +50,13 @@ const fetchFavorites = async () => {
 
       if (!favorite) {
         return item;
+      } else {
+        return {
+          ...item,
+          isFavorite: true,
+          favoriteId: favorite.id
+        };
       }
-
-      return {
-        ...item,
-        isFavorite: true,
-        favoriteId: favorite.id
-      };
     });
   } catch (err) {
     console.log(err);
