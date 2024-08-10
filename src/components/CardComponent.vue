@@ -1,6 +1,4 @@
 <script setup>
-import { provide } from 'vue';
-
 defineProps({
   id: Number,
   imageUrl: String,
@@ -10,11 +8,15 @@ defineProps({
   isFavorite: Boolean,
   isAdded: Boolean,
   onClickAdd: Function,
-  onClickFavorite: Function
+  onClickFavorite: Function,
+  modelValue: Object
 });
 
-let selected = '';
-provide('selected', selected);
+let selectedSize = '';
+const sizeSelection = (event) => {
+  selectedSize = event.target.value;
+  console.log(selectedSize);
+};
 </script>
 
 <template>
@@ -37,7 +39,7 @@ provide('selected', selected);
           <span class="text-slate-400">Цена:</span>
           <b>{{ price }} руб.</b>
         </div>
-        <select name="sizes" id="sizes" v-model="selected">
+        <select @click="sizeSelection" name="sizes" id="sizes" v-model="selectedSize">
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>

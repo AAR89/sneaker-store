@@ -5,7 +5,8 @@ defineProps({
   id: Number,
   imageUrl: String,
   title: String,
-  price: Number
+  price: Number,
+  sizes: String
 });
 </script>
 
@@ -16,7 +17,8 @@ defineProps({
     <div class="flex flex-col flex-1">
       <p>{{ title }}</p>
       <div class="flex justify-between mt-2">
-        <b class="flex-1">{{ price }}руб.</b>
+        <b class="flex-1">{{ price }} руб.</b>
+        <p>{{ sizes }}</p>
         <img
           @click="emit('onClickRemove')"
           class="opacity-40 cursor-pointer transition hover:opacity-100"

@@ -1,6 +1,7 @@
 <script setup>
-import { ref, watch, provide, computed } from 'vue';
+import { ref, watch, provide, computed, onMounted, inject } from 'vue';
 
+import firstChild from './components/firstChild.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
 
@@ -49,15 +50,23 @@ provide('cart', {
 });
 
 //Корзина конец
+
+const size = ref('[]');
+
+const sizeSelection = (event) => {
+  size.value = event.target.value;
+  console.log(size.value);
+};
 </script>
 
 <template>
   <div>
-    <DrawerComponent
+    <!-- <DrawerComponent
       v-if="drawerOpen"
       :total-price="totalPrice"
       :vat-price="vatPrice"
       @create-order="createOrder"
+      @sizeSelection="sizeSelection"
     />
     <div
       class="bg-white flex flex-col w-4/5 m-auto rounded-xl shadow-xl mt-14 max-md:mt-4 mb-4 w-[95%] justify-center"
@@ -66,7 +75,10 @@ provide('cart', {
       <div class="p-10">
         <RouterView />
       </div>
-    </div>
+    </div> -->
+    {{ size }}
+    <firstChild v-model="size" @change="sizeSelection"></firstChild>
+    <secondChild />
   </div>
 </template>
 
