@@ -2,6 +2,7 @@
 import { ref, watch, provide, computed, onMounted, inject } from 'vue';
 
 import firstChild from './components/firstChild.vue';
+import secondChild from './components/secondChild.vue';
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
 
@@ -57,6 +58,8 @@ const sizeSelection = (event) => {
   size.value = event.target.value;
   console.log(size.value);
 };
+
+provide('size', size);
 </script>
 
 <template>
@@ -76,9 +79,11 @@ const sizeSelection = (event) => {
         <RouterView />
       </div>
     </div> -->
-    {{ size }}
-    <firstChild v-model="size" @change="sizeSelection"></firstChild>
-    <secondChild />
+    <div class="flex flex-col w-[30%] gap-2 m-auto mt-2">
+      {{ size }}
+      <firstChild v-model="size" @change="sizeSelection"></firstChild>
+      <secondChild :size="size" />
+    </div>
   </div>
 </template>
 

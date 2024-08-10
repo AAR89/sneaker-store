@@ -17,7 +17,8 @@ function sizeSelection(event) {
 </script>
 
 <template>
-  <div class="flex flex-col w-[30%] gap-2 m-auto mt-2">
+  <div class="flex flex-col w-[30%] gap-2 mt-2">
+    Fist child:
     {{ modelValue }}
     <label for="size">Select Size:</label>
     <select @click="sizeSelection" :value="select" v-model="select">
