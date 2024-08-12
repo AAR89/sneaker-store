@@ -16,9 +16,9 @@ defineProps({
 
     <div class="flex flex-col flex-1">
       <p>{{ title }}</p>
-      <div class="flex justify-between mt-2">
+      <div class="flex justify-between mt-2 gap-5 items-center">
         <b class="flex-1">{{ price }} руб.</b>
-        <p>{{ selectedSize }}</p>
+        <p class="text-slate-500">{{ selectedSize }}</p>
         <img
           @click="emit('onClickRemove')"
           class="opacity-40 cursor-pointer transition hover:opacity-100"
