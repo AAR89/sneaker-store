@@ -1,4 +1,6 @@
 <script setup>
+import { ref } from 'vue';
+
 defineProps({
   id: Number,
   imageUrl: String,
@@ -9,14 +11,18 @@ defineProps({
   isAdded: Boolean,
   onClickAdd: Function,
   onClickFavorite: Function,
-  modelValue: Object
+  modelValue: {
+    type: Number,
+    required: true
+  }
 });
 
-let selectedSize = '';
-const sizeSelection = (event) => {
-  selectedSize = event.target.value;
-  console.log(selectedSize);
-};
+let select = ref('');
+
+function sizeSelection(event) {
+  select.value = event.target.value;
+  console.log('select =', select.value);
+}
 </script>
 
 <template>
@@ -39,13 +45,14 @@ const sizeSelection = (event) => {
           <span class="text-slate-400">Цена:</span>
           <b>{{ price }} руб.</b>
         </div>
-        <select @click="sizeSelection" name="sizes" id="sizes" v-model="selectedSize">
+        <select @click="sizeSelection" name="sizes" id="sizes" v-model="select">
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
+
       <img
-        v-show="onClickAdd"
+        v-show="select"
         @click="onClickAdd"
         :src="!isAdded ? './plus.svg' : './checked.svg'"
         alt="Plus logo"
