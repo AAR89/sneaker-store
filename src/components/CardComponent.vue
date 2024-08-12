@@ -39,13 +39,19 @@ function sizeSelection(event) {
     <img :src="imageUrl" alt="Sneaker logo" class="h-5/6" />
     <p class="mt-2">{{ title }}</p>
 
-    <div class="flex justify-between mt-5">
+    <div class="flex justify-between mt-5 items-center">
       <div class="flex gap-8">
         <div class="flex flex-col">
           <span class="text-slate-400">Цена:</span>
           <b>{{ price }} руб.</b>
         </div>
-        <select @click="sizeSelection" name="sizes" id="sizes" v-model="select">
+        <select
+          class="text-slate-500"
+          @click="sizeSelection"
+          name="sizes"
+          id="sizes"
+          v-model="select"
+        >
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>
