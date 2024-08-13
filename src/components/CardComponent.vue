@@ -21,7 +21,6 @@ let select = ref('');
 
 function sizeSelection(event) {
   select.value = event.target.value;
-  console.log('select =', select.value);
 }
 </script>
 

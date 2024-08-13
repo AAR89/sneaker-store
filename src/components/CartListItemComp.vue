@@ -3,8 +3,9 @@ import { inject } from 'vue';
 import CartItemComp from './CartItemComp.vue';
 
 const { cart, removeFromCart } = inject('cart');
-const selectedSizes = inject('selectedSize');
-console.log('cart-item:', selectedSizes);
+//get selectedSizes from local storage
+
+const selectedSizes = JSON.parse(localStorage.getItem('selectedSizes')) || [];
 </script>
 
 <template>

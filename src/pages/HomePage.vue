@@ -122,7 +122,6 @@ watch(filters, fetchItems);
       <h2 class="text-3xl font-bold mb-8 max-md:text-2xl">Все кроссовки</h2>
 
       <div class="flex text-gray-500 gap-4 max-lg:flex-col">
-        <!-- v-model="filters.sortBy" -->
         <select
           @change="onChangeSelect"
           class="py-2 px-3 border rounded-md outline-none"
@@ -135,7 +134,6 @@ watch(filters, fetchItems);
         </select>
         <div class="relative">
           <img class="absolute left-4 top-3" src="/search.svg" alt="" />
-          <!-- v-model.lazy="filters.searchQuery" -->
           <input
             @input="onChangeSearchInput"
             class="border rounded-md py-2 pl-11 pr-4 outline-none focus:border-gray-400 transition"
