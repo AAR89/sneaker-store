@@ -17,17 +17,18 @@ defineProps({
   }
 });
 
-let selectSize = ref('');
+let selectedSize = ref('');
 
 function sizeSelection(event) {
-  console.log(selectSize.value.length);
-  selectSize.value = event.target.value;
+  console.log(selectedSize.value.length);
+  selectedSize.value = event.target.value;
 }
 </script>
 
 <template>
   <div
     class="flex flex-col relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
+    @mouseleave="selectedSize = ''"
   >
     <img
       v-show="onClickFavorite"
@@ -50,18 +51,14 @@ function sizeSelection(event) {
           @click="sizeSelection"
           name="sizes"
           id="sizes"
-          v-model="selectSize"
+          v-model="selectedSize"
         >
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
       <img
-        v-show="
-          () => {
-            selectSize;
-          }
-        "
+        v-show="selectedSize"
         @click="onClickAdd"
         :src="!isAdded ? './plus.svg' : './checked.svg'"
         alt="Plus logo"

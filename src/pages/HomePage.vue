@@ -1,6 +1,6 @@
 <script setup>
 import axios from 'axios';
-import { onMounted, ref, watch, reactive, inject } from 'vue';
+import { onMounted, ref, watch, reactive, inject, provide } from 'vue';
 import debounce from 'lodash.debounce';
 
 import CardListComponent from '@/components/CardListComponent.vue';
@@ -12,6 +12,7 @@ const filters = reactive({
 });
 
 const { addToCart, removeFromCart, cart } = inject('cart');
+provide('items', items);
 
 const onClickAddPlus = (item) => {
   if (!item.isAdded) {

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, provide, computed } from 'vue';
+import { ref, watch, provide, computed, inject } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
@@ -11,10 +11,14 @@ const drawerOpen = ref(false);
 const selectedSize = ref([]);
 
 const sizeSelection = (event) => {
-  if (selectedSize.value.length < 1) {
-    selectedSize.value.push(event.target.value);
-    console.log(selectedSize.value);
-  }
+  selectedSize.value.unshift(event.currentTarget.value);
+  console.log(selectedSize.value);
+  // if (selectedSize.value.length > 1) {
+  //   const preSelect = selectedSize.value[0];
+  //   console.log(preSelect);
+  //   selectedSize.value.shift();
+  //   console.log(selectedSize.value);
+  // }
 };
 
 provide('selectedSize', selectedSize);
