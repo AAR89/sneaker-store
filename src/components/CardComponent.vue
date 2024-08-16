@@ -20,6 +20,7 @@ defineProps({
 let selectSize = ref('');
 
 function sizeSelection(event) {
+  console.log(selectSize.value.length);
   selectSize.value = event.target.value;
 }
 </script>
@@ -39,24 +40,28 @@ function sizeSelection(event) {
     <p class="mt-2">{{ title }}</p>
 
     <div class="flex justify-between mt-5 items-center">
-      <div class="flex gap-8">
+      <div class="flex gap-4 justify-center items-center">
         <div class="flex flex-col">
           <span class="text-slate-400">Цена:</span>
           <b>{{ price }} руб.</b>
         </div>
         <select
-          class="text-slate-500"
+          class="text-slate-500 bg-white px-1 pl-0.8 py-1 h-5/6 border rounded-md outline-none appearance-auto"
           @click="sizeSelection"
           name="sizes"
           id="sizes"
-          v-model="select"
+          v-model="selectSize"
         >
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
       <img
-        v-show="selectSize"
+        v-show="
+          () => {
+            selectSize;
+          }
+        "
         @click="onClickAdd"
         :src="!isAdded ? './plus.svg' : './checked.svg'"
         alt="Plus logo"

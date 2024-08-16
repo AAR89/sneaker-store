@@ -11,7 +11,10 @@ const drawerOpen = ref(false);
 const selectedSize = ref([]);
 
 const sizeSelection = (event) => {
-  selectedSize.value.push(event.target.value);
+  if (selectedSize.value.length < 1) {
+    selectedSize.value.push(event.target.value);
+    console.log(selectedSize.value);
+  }
 };
 
 provide('selectedSize', selectedSize);
@@ -21,13 +24,13 @@ const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 
 //Корзина начало
 
-const addToCart = (item) => {
-  item.selectedSize = selectedSize.value;
-  cart.value.push(item);
-  item.isAdded = true;
+const addToCart = (items) => {
+  items.selectedSize = selectedSize.value;
+  cart.value.push(items);
+  items.isAdded = true;
   selectedSize.value = [];
   setTimeout(() => {
-    item.isAdded = false;
+    items.isAdded = false;
   }, 3000);
 };
 
