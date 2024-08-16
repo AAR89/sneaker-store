@@ -11,7 +11,7 @@ const drawerOpen = ref(false);
 const selectedSize = ref([]);
 
 const sizeSelection = (event) => {
-  selectedSize.value.unshift(event.currentTarget.value);
+  selectedSize.value.unshift(event.target.value);
   console.log(selectedSize.value);
   // if (selectedSize.value.length > 1) {
   //   const preSelect = selectedSize.value[0];
