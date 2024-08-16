@@ -9,14 +9,12 @@ const cart = ref([]);
 const drawerOpen = ref(false);
 
 const selectedSize = ref([]);
-const selectedSizes = ref([]);
 
 const sizeSelection = (event) => {
   selectedSize.value.push(event.target.value);
 };
 
 provide('selectedSize', selectedSize);
-provide('selectedSizes', selectedSizes);
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
@@ -34,7 +32,6 @@ const addToCart = (item) => {
 };
 
 const removeFromCart = (item) => {
-  console.log(item.selectedSize);
   cart.value.splice(cart.value.indexOf(item), 1);
   item.isAdded = false;
 };
@@ -61,8 +58,7 @@ provide('cart', {
   closeDrawer,
   openDrawer,
   addToCart,
-  removeFromCart,
-  selectedSize
+  removeFromCart
 });
 
 //Корзина конец
