@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, provide, computed, inject } from 'vue';
+import { ref, watch, provide, computed } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
