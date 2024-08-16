@@ -20,12 +20,7 @@ defineProps({
 let selectSize = ref('');
 
 function sizeSelection(event) {
-<<<<<<< HEAD
-  select.value = event.target.value;
-=======
   selectSize.value = event.target.value;
-  console.log('select =', selectSize.value);
->>>>>>> new-branch
 }
 </script>
 
@@ -49,7 +44,6 @@ function sizeSelection(event) {
           <span class="text-slate-400">Цена:</span>
           <b>{{ price }} руб.</b>
         </div>
-<<<<<<< HEAD
         <select
           class="text-slate-500"
           @click="sizeSelection"
@@ -57,14 +51,10 @@ function sizeSelection(event) {
           id="sizes"
           v-model="select"
         >
-=======
-        <select @click="sizeSelection" name="sizes" id="sizes" v-model="selectSize">
->>>>>>> new-branch
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
-
       <img
         v-show="selectSize"
         @click="onClickAdd"

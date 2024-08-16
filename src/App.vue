@@ -21,24 +21,11 @@ provide('selectedSizes', selectedSizes);
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 
-watch(
-  selectedSize,
-  () => {
-    cart.value.map((item, index) => {
-      item.selectedSize = selectedSize.value[index];
-      localStorage.setItem('cart', JSON.stringify(cart.value));
-    });
-  },
-  { deep: true }
-);
-
 //Корзина начало
 
 const addToCart = (item) => {
   item.selectedSize = selectedSize.value;
   cart.value.push(item);
-  selectedSizes.value.push(selectedSize.value);
-  localStorage.setItem('selectedSizes', JSON.stringify(selectedSize.value));
   item.isAdded = true;
   selectedSize.value = [];
   setTimeout(() => {
@@ -50,13 +37,6 @@ const removeFromCart = (item) => {
   console.log(item.selectedSize);
   cart.value.splice(cart.value.indexOf(item), 1);
   item.isAdded = false;
-  // selectedSizes.value.filter((a) => {
-  //   a == String(item.selectedSize);
-  // });
-  // console.log(selectedSizes.value);
-  // localStorage.removeItem('selectedSizes');
-  // localStorage.setItem('selectedSizes', JSON.stringify(selectedSizes.value));
-  // localStorage.removeItem('selectedSizes', item.selectedSize);
 };
 
 const closeDrawer = () => {
@@ -70,12 +50,6 @@ const openDrawer = () => {
 watch(
   cart,
   () => {
-<<<<<<< HEAD
-    cart.value.map((item, index) => {
-      item.selectedSize = selectedSize.value[index];
-    });
-=======
->>>>>>> new-branch
     localStorage.setItem('cart', JSON.stringify(cart.value));
   },
   { deep: true }
