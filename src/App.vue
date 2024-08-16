@@ -35,10 +35,12 @@ watch(
 //Корзина начало
 
 const addToCart = (item) => {
+  item.selectedSize = selectedSize.value;
   cart.value.push(item);
   selectedSizes.value.push(selectedSize.value);
   localStorage.setItem('selectedSizes', JSON.stringify(selectedSize.value));
   item.isAdded = true;
+  selectedSize.value = [];
   setTimeout(() => {
     item.isAdded = false;
   }, 3000);
@@ -68,9 +70,12 @@ const openDrawer = () => {
 watch(
   cart,
   () => {
+<<<<<<< HEAD
     cart.value.map((item, index) => {
       item.selectedSize = selectedSize.value[index];
     });
+=======
+>>>>>>> new-branch
     localStorage.setItem('cart', JSON.stringify(cart.value));
   },
   { deep: true }
