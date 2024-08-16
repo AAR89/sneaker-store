@@ -17,11 +17,11 @@ defineProps({
   }
 });
 
-let select = ref('');
+let selectSize = ref('');
 
 function sizeSelection(event) {
-  select.value = event.target.value;
-  console.log('select =', select.value);
+  selectSize.value = event.target.value;
+  console.log('select =', selectSize.value);
 }
 </script>
 
@@ -45,14 +45,14 @@ function sizeSelection(event) {
           <span class="text-slate-400">Цена:</span>
           <b>{{ price }} руб.</b>
         </div>
-        <select @click="sizeSelection" name="sizes" id="sizes" v-model="select">
+        <select @click="sizeSelection" name="sizes" id="sizes" v-model="selectSize">
           <option disabled value="">Размер</option>
           <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
         </select>
       </div>
 
       <img
-        v-show="select"
+        v-show="selectSize"
         @click="onClickAdd"
         :src="!isAdded ? './plus.svg' : './checked.svg'"
         alt="Plus logo"

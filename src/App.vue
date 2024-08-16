@@ -23,8 +23,10 @@ const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 //Корзина начало
 
 const addToCart = (item) => {
+  item.selectedSize = selectedSize.value;
   cart.value.push(item);
   item.isAdded = true;
+  selectedSize.value = [];
   setTimeout(() => {
     item.isAdded = false;
   }, 3000);
@@ -46,9 +48,6 @@ const openDrawer = () => {
 watch(
   cart,
   () => {
-    cart.value.selectedSize = selectedSize.value;
-    console.log('cart.value.selectedSize=', cart.value.selectedSize);
-    console.log('cart.value=', cart.value);
     localStorage.setItem('cart', JSON.stringify(cart.value));
   },
   { deep: true }
