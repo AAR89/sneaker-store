@@ -8,11 +8,12 @@ const props = defineProps({
 const open = ref(false);
 
 const { cart, totalPrice, closeDrawer, openDrawer, addToCart, removeFromCart } = inject('cart');
-const { selectedSize } = inject('selectedSize');
 
+const selectedSize = ref('');
 const handleSelectSize = (size) => {
   selectedSize.value = size;
-  closeDrawer();
+  console.log(selectedSize.value);
+  //   closeDrawer();
 };
 </script>
 
@@ -34,6 +35,7 @@ const handleSelectSize = (size) => {
               class="flex justify-center align-center relative bg-white border border-slate-100 w-11 h-11 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
               v-for="item in props.items"
               :key="item.id"
+              @click="handleSelectSize(item)"
             >
               {{ item }}
             </li>
