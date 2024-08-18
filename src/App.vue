@@ -14,12 +14,6 @@ const selectedSize = ref([]);
 const sizeSelection = (event) => {
   selectedSize.value.unshift(event.target.value);
   console.log(selectedSize.value);
-  // if (selectedSize.value.length > 1) {
-  //   const preSelect = selectedSize.value[0];
-  //   console.log(preSelect);
-  //   selectedSize.value.shift();
-  //   console.log(selectedSize.value);
-  // }
 };
 
 provide('selectedSize', selectedSize);
@@ -69,11 +63,16 @@ provide('cart', {
   removeFromCart
 });
 
+const itemsArr = [
+  38.5, 39, 39.5, 40, 40.5, 41, 41.5, 42, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46, 46.5, 47, 47.5,
+  48, 48.5
+];
 //Корзина конец
 </script>
 
 <template>
   <div>
+    <MyModal :items="itemsArr" />
     <DrawerComponent
       v-if="drawerOpen"
       :total-price="totalPrice"
@@ -89,7 +88,6 @@ provide('cart', {
         <RouterView v-model="selectedSize" @change="sizeSelection" />
       </div>
     </div>
-    <MyModal />
   </div>
 </template>
 
