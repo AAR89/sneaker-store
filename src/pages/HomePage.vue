@@ -12,6 +12,7 @@ const filters = reactive({
 });
 
 const { addToCart, removeFromCart, cart } = inject('cart');
+
 provide('items', items);
 
 const onClickAddPlus = (item) => {

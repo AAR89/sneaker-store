@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, provide, computed } from 'vue';
+import { ref, watch, provide, computed, inject } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
@@ -9,7 +9,7 @@ const cart = ref([]);
 
 const drawerOpen = ref(false);
 
-const selectedSize = ref([]);
+const selectedSize = ref(inject('selectedSize'));
 
 const sizeSelection = (event) => {
   selectedSize.value.unshift(event.target.value);
@@ -54,25 +54,56 @@ watch(
   { deep: true }
 );
 
+const itemsArr = [
+  { size: 38.5, clicked: false },
+  { size: 39, clicked: false },
+  { size: 39.5, clicked: false },
+  { size: 40, clicked: false },
+  { size: 40.5, clicked: false },
+  { size: 41, clicked: false },
+  { size: 41.5, clicked: false },
+  { size: 42, clicked: false },
+  { size: 42.5, clicked: false },
+  { size: 43, clicked: false },
+  { size: 43.5, clicked: false },
+  { size: 44, clicked: false },
+  { size: 44.5, clicked: false },
+  { size: 45, clicked: false },
+  { size: 45.5, clicked: false },
+  { size: 46, clicked: false },
+  { size: 46.5, clicked: false },
+  { size: 47, clicked: false },
+  { size: 47.5, clicked: false },
+  { size: 48, clicked: false },
+  { size: 48.5, clicked: false }
+];
+
 provide('cart', {
   cart,
   totalPrice,
   closeDrawer,
   openDrawer,
   addToCart,
-  removeFromCart
+  removeFromCart,
+  itemsArr
 });
 
-const itemsArr = [
-  38.5, 39, 39.5, 40, 40.5, 41, 41.5, 42, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46, 46.5, 47, 47.5,
-  48, 48.5
-];
+const modalDrawer = ref(false);
+
+const openModalDrawer = () => {
+  modalDrawer.value = !modalDrawer.value;
+  console.log(modalDrawer.value);
+};
+
+provide('openModalDrawer', openModalDrawer);
+
 //Корзина конец
 </script>
 
 <template>
   <div>
-    <MyModal :items="itemsArr" />
+    <MyModal v-show="modalDrawer" />
+
     <DrawerComponent
       v-if="drawerOpen"
       :total-price="totalPrice"
@@ -85,7 +116,11 @@ const itemsArr = [
     >
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
-        <RouterView v-model="selectedSize" @change="sizeSelection" />
+        <RouterView
+          v-model="selectedSize"
+          @change="sizeSelection"
+          :openModalDrawer="openModalDrawer"
+        />
       </div>
     </div>
   </div>

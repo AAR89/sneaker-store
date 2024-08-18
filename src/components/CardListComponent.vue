@@ -23,6 +23,7 @@ const emit = defineEmits(['addToFavorite', 'addToCart']);
         :onClickFavorite="() => emit('addToFavorite', item)"
         :isFavorite="item.isFavorite"
         :isAdded="item.isAdded"
+        :openModalDrawer="openModalDrawer"
       />
     </div>
   </div>
