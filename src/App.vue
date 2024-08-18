@@ -3,6 +3,7 @@ import { ref, watch, provide, computed } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
+import MyModal from './components/MyModal.vue';
 
 const cart = ref([]);
 
@@ -88,6 +89,7 @@ provide('cart', {
         <RouterView v-model="selectedSize" @change="sizeSelection" />
       </div>
     </div>
+    <MyModal />
   </div>
 </template>
 
