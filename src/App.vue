@@ -3,13 +3,14 @@ import { ref, watch, provide, computed, inject } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
-import MyModal from './components/MyModal.vue';
 
 const cart = ref([]);
 
 const drawerOpen = ref(false);
 
-const selectedSize = ref(inject('selectedSize'));
+const selectedSize = inject('selectedSize');
+const openModalDrawer = inject('openModalDrawer');
+const onClickAddPlus = inject('onClickAddPlus');
 
 const sizeSelection = (event) => {
   selectedSize.value.unshift(event.target.value);
@@ -17,6 +18,8 @@ const sizeSelection = (event) => {
 };
 
 provide('selectedSize', selectedSize);
+provide('openModalDrawer', openModalDrawer);
+provide('onClickAddPlus', onClickAddPlus);
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
@@ -24,13 +27,8 @@ const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 //Корзина начало
 
 const addToCart = (items) => {
-  items.selectedSize = selectedSize.value;
   cart.value.push(items);
   items.isAdded = true;
-  selectedSize.value = [];
-  setTimeout(() => {
-    items.isAdded = false;
-  }, 3000);
 };
 
 const removeFromCart = (item) => {
@@ -55,27 +53,27 @@ watch(
 );
 
 const itemsArr = [
-  { size: 38.5, clicked: false },
-  { size: 39, clicked: false },
-  { size: 39.5, clicked: false },
-  { size: 40, clicked: false },
-  { size: 40.5, clicked: false },
-  { size: 41, clicked: false },
-  { size: 41.5, clicked: false },
-  { size: 42, clicked: false },
-  { size: 42.5, clicked: false },
-  { size: 43, clicked: false },
-  { size: 43.5, clicked: false },
-  { size: 44, clicked: false },
-  { size: 44.5, clicked: false },
-  { size: 45, clicked: false },
-  { size: 45.5, clicked: false },
-  { size: 46, clicked: false },
-  { size: 46.5, clicked: false },
-  { size: 47, clicked: false },
-  { size: 47.5, clicked: false },
-  { size: 48, clicked: false },
-  { size: 48.5, clicked: false }
+  { size: 38.5, isClicked: false },
+  { size: 39, isClicked: false },
+  { size: 39.5, isClicked: false },
+  { size: 40, isClicked: false },
+  { size: 40.5, isClicked: false },
+  { size: 41, isClicked: false },
+  { size: 41.5, isClicked: false },
+  { size: 42, isClicked: false },
+  { size: 42.5, isClicked: false },
+  { size: 43, isClicked: false },
+  { size: 43.5, isClicked: false },
+  { size: 44, isClicked: false },
+  { size: 44.5, isClicked: false },
+  { size: 45, isClicked: false },
+  { size: 45.5, isClicked: false },
+  { size: 46, isClicked: false },
+  { size: 46.5, isClicked: false },
+  { size: 47, isClicked: false },
+  { size: 47.5, isClicked: false },
+  { size: 48, isClicked: false },
+  { size: 48.5, isClicked: false }
 ];
 
 provide('cart', {
@@ -88,22 +86,11 @@ provide('cart', {
   itemsArr
 });
 
-const modalDrawer = ref(false);
-
-const openModalDrawer = () => {
-  modalDrawer.value = !modalDrawer.value;
-  console.log(modalDrawer.value);
-};
-
-provide('openModalDrawer', openModalDrawer);
-
 //Корзина конец
 </script>
 
 <template>
   <div>
-    <MyModal v-show="modalDrawer" />
-
     <DrawerComponent
       v-if="drawerOpen"
       :total-price="totalPrice"

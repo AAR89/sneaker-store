@@ -1,5 +1,6 @@
 <script setup>
-import { inject } from 'vue';
+import { provide, ref } from 'vue';
+import MyModal from './MyModal.vue';
 
 defineProps({
   id: Number,
@@ -17,12 +18,21 @@ defineProps({
   }
 });
 
-const openModalDrawer = inject('openModalDrawer');
+const modalDrawer = ref(false);
+
+const openModalDrawer = () => {
+  modalDrawer.value = !modalDrawer.value;
+  console.log('open');
+};
+
+provide('openModalDrawer', openModalDrawer);
 </script>
 
 <template>
   <!-- @mouseleave="selectedSize = ''" -->
   <div>
+    <MyModal v-show="modalDrawer" :items="items" />
+
     <div
       class="flex flex-col relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
     >
@@ -42,18 +52,7 @@ const openModalDrawer = inject('openModalDrawer');
             <span class="text-slate-400">Цена:</span>
             <b>{{ price }} руб.</b>
           </div>
-          <!-- <select
-          class="text-slate-500 bg-white px-1 pl-0.8 py-1 h-5/6 border rounded-md outline-none appearance-auto"
-          @click="sizeSelection"
-          name="sizes"
-          id="sizes"
-          v-model="selectedSize"
-        >
-          <option disabled value="">Размер</option>
-          <option v-for="size in sizes" :key="size" :value="size">{{ size }}</option>
-        </select> -->
         </div>
-        <!-- v-show="selectedSize" -->
         <img
           @click="openModalDrawer"
           :src="!isAdded ? './plus.svg' : './checked.svg'"

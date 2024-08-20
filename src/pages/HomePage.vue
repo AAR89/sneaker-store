@@ -13,9 +13,8 @@ const filters = reactive({
 
 const { addToCart, removeFromCart, cart } = inject('cart');
 
-provide('items', items);
-
 const onClickAddPlus = (item) => {
+  console.log('onClickAddPlus');
   if (!item.isAdded) {
     addToCart(item);
   } else {
@@ -116,6 +115,9 @@ watch(cart, () => {
 });
 
 watch(filters, fetchItems);
+
+provide('items', items);
+provide('onClickAddPlus', onClickAddPlus);
 </script>
 
 <template>
@@ -147,8 +149,8 @@ watch(filters, fetchItems);
     </div>
     <CardListComponent
       :items="items"
-      @add-to-favorite="addToFavorite"
       @add-to-cart="onClickAddPlus"
+      @add-to-favorite="addToFavorite"
     />
   </div>
 </template>
