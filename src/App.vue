@@ -28,7 +28,8 @@ const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 //Корзина начало
 
 const addToCart = (item) => {
-  cart.value.selectedSize = selectedSize.value;
+  console.log(selectedSize.value);
+  item.selectedSize = selectedSize.value;
   cart.value.push(item);
   item.isAdded = true;
 };

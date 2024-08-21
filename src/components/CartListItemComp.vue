@@ -12,9 +12,9 @@ const { cart, removeFromCart } = inject('cart');
       :key="item.id"
       :title="item.title"
       :price="item.price"
+      :selected-size="item.selectedSize"
       :image-url="item.imageUrl"
       @on-click-remove="() => removeFromCart(item)"
     />
   </div>
-  <!-- :selected-size="item.selectedSize" -->
 </template>
