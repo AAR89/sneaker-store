@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref } from 'vue';
+import { inject, ref, watch } from 'vue';
 
 defineProps({
   id: Number,
@@ -30,6 +30,10 @@ const modalDrawerFalse = () => {
   modalDrawer.value = false;
   selectedSize = '';
 };
+
+watch(selectedSize, () => {
+  console.log(selectedSize.value);
+});
 </script>
 
 <template>
@@ -48,11 +52,14 @@ const modalDrawerFalse = () => {
       <img :src="imageUrl" alt="Sneaker logo" class="h-5/6" />
       <p class="mt-2">{{ title }}</p>
 
-      <div class="flex justify-between mt-2 items-center">
+      <div class="flex justify-between mt-2 items-end">
         <div class="flex gap-4 justify-center items-center">
           <div class="flex flex-col">
             <span class="text-slate-400">Цена:</span>
-            <b>{{ price }} руб.</b>
+            <div class="flex justify-between gap-5">
+              <b>{{ price }} руб.</b>
+              <b class="text-lime-500" v-if="isAdded">Товар в корзине</b>
+            </div>
           </div>
         </div>
         <img
@@ -74,10 +81,7 @@ const modalDrawerFalse = () => {
             v-for="item in sizes"
             :key="item.id"
             @click="handleSelectSize(item)"
-            :class="{
-              'border-2 border-blue-400': selectedSize === item,
-              'text-blue-400': selectedSize === item
-            }"
+            :class="selectedSize ? 'text-white bg-lime-500' : 'text-gray-500'"
           >
             {{ item }}
           </li>
