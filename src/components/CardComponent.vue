@@ -56,8 +56,8 @@ watch(selectedSize, () => {
         <div class="flex gap-4 justify-center items-center">
           <div class="flex flex-col">
             <span class="text-slate-400">Цена:</span>
-            <div class="flex justify-between gap-5">
-              <b>{{ price }} руб.</b>
+            <div class="flex justify-between gap-2">
+              <b class="flex flex-nowrap">{{ price }} руб.</b>
               <b class="text-lime-500" v-if="isAdded">Товар в корзине</b>
             </div>
           </div>
