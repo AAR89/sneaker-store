@@ -46,10 +46,10 @@ const modalDrawerFalse = () => {
         class="absolute top-8 left-8 fill-black"
         @click="onClickFavorite"
       />
-      <img :src="imageUrl" alt="Sneaker logo" class="h-50" />
-      <p class="mt-2 h-5">{{ title }}</p>
+      <img :src="imageUrl" alt="Sneaker logo" class="h-5/6" />
+      <p class="mt-2">{{ title }}</p>
 
-      <div class="flex justify-between mt-7 items-center">
+      <div class="flex justify-between mt-2 items-center">
         <div class="flex gap-4 justify-center items-center">
           <div class="flex flex-col">
             <span class="text-slate-400">Цена:</span>
