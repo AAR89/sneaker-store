@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, provide, computed, inject } from 'vue';
+import { ref, watch, provide, computed } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
@@ -8,7 +8,11 @@ const cart = ref([]);
 
 const drawerOpen = ref(false);
 
-const selectedSize = inject('selectedSize');
+const selectedSize = ref('');
+const handleSelectSize = (size) => {
+  selectedSize.value = size;
+  console.log(selectedSize.value); //   closeDrawer();
+};
 
 const sizeSelection = (event) => {
   selectedSize.value.unshift(event.target.value);
@@ -16,6 +20,7 @@ const sizeSelection = (event) => {
 };
 
 provide('selectedSize', selectedSize);
+provide('handleSelectSize', handleSelectSize);
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
