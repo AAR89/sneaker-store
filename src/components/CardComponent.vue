@@ -17,10 +17,8 @@ defineProps({
   }
 });
 
-// const modalDrawer = inject('modalDrawer');
-// const openModalDrawer = inject('openModalDrawer');
-
 const handleSelectSize = inject('handleSelectSize');
+let selectedSize = inject('selectedSize');
 
 const modalDrawer = ref(false);
 const openModalDrawer = () => {
@@ -30,6 +28,7 @@ const openModalDrawer = () => {
 
 const modalDrawerFalse = () => {
   modalDrawer.value = false;
+  selectedSize = '';
 };
 </script>
 
@@ -71,7 +70,7 @@ const modalDrawerFalse = () => {
           class="flex flex-wrap justify-center text-left gap-2 flex-wrap w-full h-auto max-md:justify-center"
         >
           <li
-            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
+            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition active:black hover:-translate-y-2 hover:shadow-xl"
             v-for="item in sizes"
             :key="item.id"
             @click="handleSelectSize(item)"

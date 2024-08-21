@@ -34,6 +34,7 @@ const addToCart = (item) => {
   item.selectedSize = selectedSize.value;
   cart.value.push(item);
   item.isAdded = true;
+  selectedSize.value = [];
 };
 
 const removeFromCart = (item) => {
@@ -57,38 +58,13 @@ watch(
   { deep: true }
 );
 
-const itemsArr = [
-  { size: 38.5, isClicked: false },
-  { size: 39, isClicked: false },
-  { size: 39.5, isClicked: false },
-  { size: 40, isClicked: false },
-  { size: 40.5, isClicked: false },
-  { size: 41, isClicked: false },
-  { size: 41.5, isClicked: false },
-  { size: 42, isClicked: false },
-  { size: 42.5, isClicked: false },
-  { size: 43, isClicked: false },
-  { size: 43.5, isClicked: false },
-  { size: 44, isClicked: false },
-  { size: 44.5, isClicked: false },
-  { size: 45, isClicked: false },
-  { size: 45.5, isClicked: false },
-  { size: 46, isClicked: false },
-  { size: 46.5, isClicked: false },
-  { size: 47, isClicked: false },
-  { size: 47.5, isClicked: false },
-  { size: 48, isClicked: false },
-  { size: 48.5, isClicked: false }
-];
-
 provide('cart', {
   cart,
   totalPrice,
   closeDrawer,
   openDrawer,
   addToCart,
-  removeFromCart,
-  itemsArr
+  removeFromCart
 });
 
 //Корзина конец
@@ -108,7 +84,7 @@ provide('cart', {
     >
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
-        <RouterView v-model="selectedSize" @change="sizeSelection" />
+        <RouterView />
       </div>
     </div>
   </div>
