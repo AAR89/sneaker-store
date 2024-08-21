@@ -17,12 +17,19 @@ defineProps({
   }
 });
 
-const modalDrawer = ref(false);
+// const modalDrawer = inject('modalDrawer');
+// const openModalDrawer = inject('openModalDrawer');
+
 const handleSelectSize = inject('handleSelectSize');
 
+const modalDrawer = ref(false);
 const openModalDrawer = () => {
   modalDrawer.value = !modalDrawer.value;
   console.log(modalDrawer.value);
+};
+
+const modalDrawerFalse = () => {
+  modalDrawer.value = false;
 };
 </script>
 
@@ -55,7 +62,10 @@ const openModalDrawer = () => {
           alt="Plus logo"
         />
       </div>
-      <div v-show="modalDrawer" class="flex flex-col flex-wrap align-center max-md:text-center">
+      <div
+        v-show="modalDrawer && !isAdded"
+        class="flex flex-col flex-wrap align-center max-md:text-center"
+      >
         <p class="text-black mb-4 mt-2 text-xl font-bold">Выберите размер</p>
         <ul class="flex justify-left gap-2 flex-wrap w-full h-auto max-md:justify-center">
           <li
@@ -64,14 +74,22 @@ const openModalDrawer = () => {
             :key="item.id"
             @click="handleSelectSize(item)"
             :class="{
-              'border-red-500': item.clicked,
-              'text-red-500': item.clicked
+              'border-2 border-blue-400': selectedSize === item,
+              'text-blue-400': selectedSize === item
             }"
           >
             {{ item }}
           </li>
         </ul>
-        <button class="text-black" @click="onClickAdd">Добавить в корзину</button>
+        <button
+          class="text-black"
+          @click="
+            onClickAdd();
+            modalDrawerFalse();
+          "
+        >
+          Добавить в корзину
+        </button>
       </div>
     </div>
   </div>

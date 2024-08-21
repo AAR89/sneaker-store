@@ -21,6 +21,8 @@ const sizeSelection = (event) => {
 
 provide('selectedSize', selectedSize);
 provide('handleSelectSize', handleSelectSize);
+// provide('openModalDrawer', openModalDrawer);
+// provide('modalDrawer', modalDrawer);
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
