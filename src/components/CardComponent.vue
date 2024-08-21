@@ -34,9 +34,9 @@ const modalDrawerFalse = () => {
 </script>
 
 <template>
-  <!-- @mouseleave="selectedSize = ''" -->
   <div>
     <div
+      @mouseleave="modalDrawerFalse"
       class="flex flex-col relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
     >
       <img
