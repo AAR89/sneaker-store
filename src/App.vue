@@ -9,8 +9,6 @@ const cart = ref([]);
 const drawerOpen = ref(false);
 
 const selectedSize = inject('selectedSize');
-const openModalDrawer = inject('openModalDrawer');
-const onClickAddPlus = inject('onClickAddPlus');
 
 const sizeSelection = (event) => {
   selectedSize.value.unshift(event.target.value);
@@ -18,8 +16,6 @@ const sizeSelection = (event) => {
 };
 
 provide('selectedSize', selectedSize);
-provide('openModalDrawer', openModalDrawer);
-provide('onClickAddPlus', onClickAddPlus);
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
