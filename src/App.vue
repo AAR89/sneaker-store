@@ -27,9 +27,10 @@ const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 
 //Корзина начало
 
-const addToCart = (items) => {
-  cart.value.push(items);
-  items.isAdded = true;
+const addToCart = (item) => {
+  cart.value.selectedSize = selectedSize.value;
+  cart.value.push(item);
+  item.isAdded = true;
 };
 
 const removeFromCart = (item) => {
@@ -104,11 +105,7 @@ provide('cart', {
     >
       <HeaderComponent :total-price="totalPrice" @open-drawer="openDrawer" />
       <div class="p-10">
-        <RouterView
-          v-model="selectedSize"
-          @change="sizeSelection"
-          :openModalDrawer="openModalDrawer"
-        />
+        <RouterView v-model="selectedSize" @change="sizeSelection" />
       </div>
     </div>
   </div>

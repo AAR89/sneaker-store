@@ -11,10 +11,10 @@ const { cart, removeFromCart } = inject('cart');
       v-for="item in cart"
       :key="item.id"
       :title="item.title"
-      :selected-size="item.selectedSize[0]"
       :price="item.price"
       :image-url="item.imageUrl"
       @on-click-remove="() => removeFromCart(item)"
     />
   </div>
+  <!-- :selected-size="item.selectedSize" -->
 </template>
