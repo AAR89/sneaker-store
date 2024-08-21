@@ -66,10 +66,12 @@ const modalDrawerFalse = () => {
         v-show="modalDrawer && !isAdded"
         class="flex flex-col flex-wrap align-center max-md:text-center"
       >
-        <p class="text-black mb-4 mt-2 text-xl font-bold">Выберите размер</p>
-        <ul class="flex justify-left gap-2 flex-wrap w-full h-auto max-md:justify-center">
+        <p class="text-slate-400 mb-4 mt-2">Выберите размер</p>
+        <ul
+          class="flex flex-wrap justify-center text-left gap-2 flex-wrap w-full h-auto max-md:justify-center"
+        >
           <li
-            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-11 h-11 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
+            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
             v-for="item in sizes"
             :key="item.id"
             @click="handleSelectSize(item)"
@@ -82,7 +84,7 @@ const modalDrawerFalse = () => {
           </li>
         </ul>
         <button
-          class="text-black"
+          class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
           @click="
             onClickAdd();
             modalDrawerFalse();
