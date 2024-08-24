@@ -56,7 +56,7 @@ watch(selectedSize, () => {
         <div class="flex gap-4 justify-center items-center">
           <div class="flex flex-col">
             <span class="text-slate-400">Цена:</span>
-            <div class="flex justify-between gap-2">
+            <div class="flex justify-between gap-2 text-m">
               <b class="flex flex-nowrap">{{ price }} руб.</b>
               <b class="text-lime-500" v-if="isAdded">Товар в корзине</b>
             </div>
@@ -77,11 +77,10 @@ watch(selectedSize, () => {
           class="flex flex-wrap justify-center text-left gap-2 flex-wrap w-full h-auto max-md:justify-center"
         >
           <li
-            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition active:black hover:-translate-y-2 hover:shadow-xl"
+            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl hover:border-lime-500"
             v-for="item in sizes"
             :key="item.id"
             @click="handleSelectSize(item)"
-            :class="selectedSize ? 'text-white bg-lime-500' : 'text-gray-500'"
           >
             {{ item }}
           </li>
