@@ -11,12 +11,10 @@ const drawerOpen = ref(false);
 const selectedSize = ref('');
 const handleSelectSize = (size) => {
   selectedSize.value = size;
-  console.log(selectedSize.value); //   closeDrawer();
 };
 
 const sizeSelection = (event) => {
   selectedSize.value.unshift(event.target.value);
-  console.log(selectedSize.value);
 };
 
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
@@ -29,7 +27,6 @@ const addToCart = (item) => {
     alert('Пожалуйста выберете размер');
     return;
   } else {
-    console.log(selectedSize.value);
     item.selectedSize = selectedSize.value;
     cart.value.push(item);
     item.isAdded = true;
@@ -44,7 +41,6 @@ const removeFromCart = (item) => {
 
 const clearSelectedSize = () => {
   selectedSize.value = '';
-  console.log(selectedSize.value, 'selectedSize clear');
 };
 
 const closeDrawer = () => {

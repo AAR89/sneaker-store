@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref, watch } from 'vue';
+import { inject, ref } from 'vue';
 
 defineProps({
   id: Number,
@@ -18,13 +18,11 @@ defineProps({
 });
 
 const handleSelectSize = inject('handleSelectSize');
-let selectedSize = inject('selectedSize');
 let clearSelectedSize = inject('clearSelectedSize');
 
 const modalDrawer = ref(false);
 const openModalDrawer = () => {
   modalDrawer.value = !modalDrawer.value;
-  console.log(modalDrawer.value);
 };
 
 const activeEl = ref(0);
@@ -33,10 +31,6 @@ const modalDrawerFalse = () => {
   modalDrawer.value = false;
   activeEl.value = 0;
 };
-
-watch(selectedSize, () => {
-  console.log(selectedSize.value);
-});
 </script>
 
 <template>

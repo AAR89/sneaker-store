@@ -14,7 +14,6 @@ const filters = reactive({
 const { addToCart, removeFromCart, cart } = inject('cart');
 
 const onClickAddPlus = (item) => {
-  console.log('onClickAddPlus');
   if (!item.isAdded) {
     addToCart(item);
   } else {
