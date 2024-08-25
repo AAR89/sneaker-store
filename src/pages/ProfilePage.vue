@@ -6,55 +6,133 @@ const userName = ref('Иван');
 const handleClick = () => {
   userName.value = prompt('Введите новое имя:', userName.value);
 };
+
+const isLogin = ref(false);
+
+const name = ref('');
+const email = ref('');
+const phone = ref('');
+const password = ref('');
+
+const login = () => {
+  if (name.value === 'admin' && password.value === 'admin') {
+    isLogin.value = true;
+    name.value = '';
+    password.value = '';
+  } else {
+    alert('Неправильный login или пароль');
+  }
+};
+
+const logout = () => {
+  isLogin.value = false;
+};
 </script>
 
 <template>
   <div>
-    <h2 class="text-3xl font-bold">Личный кабинет</h2>
-
-    <div class="flex items-center text-center mt-5 gap-3">
-      <img src="/avatar.png" alt="Avatar" class="avatar w-20" />
-      <p class="text-2xl font-bold max-md:text-2xl">{{ userName }}</p>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="none"
-        class="cursor-pointer"
-        @click="handleClick"
-      >
-        <path
-          fill="#BDBDCB"
-          fill-rule="evenodd"
-          d="M12.407.258a.89.89 0 0 1 1.253 0l2.08 2.08a.885.885 0 0 1 0 1.253l-1.627 1.626-3.332-3.333L12.407.258ZM0 12.665l9.83-9.83 3.333 3.333-9.83 9.83H0v-3.333Z"
-          clip-rule="evenodd"
+    <div v-if="!isLogin">
+      <form class="login flex flex-col items-start gap-2" @submit.prevent="login">
+        <b>Добро пожаловать в <span class="uppercase">Sneaker shop</span></b>
+        <p>
+          Впервые здесь?
+          <b class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-lime-500"
+            >Зарегистрироваться</b
+          >
+        </p>
+        <!-- <label>Email</label>
+        <input required v-model="email" type="email || text" placeholder="Name" /> -->
+        <!-- <label>Телефон</label>
+        <input
+          type="tel"
+          v-model="phone"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          required
+          placeholder="+7 (___) ___-____"
+        /> -->
+        <label>Логин</label>
+        <input
+          class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
+          required
+          v-model="name"
+          type="text"
+          placeholder="Логин"
         />
-      </svg>
-    </div>
-
-    <div class="flex gap-3 mt-5">
-      <div class="flex flex-col">
-        <p class="text-slate-500">Телефон</p>
-        <p>+7 977 777-77-77</p>
-      </div>
-      <form class="flex flex-col">
-        <p class="text-slate-500">Пол</p>
-        <div class="flex gap-3 items-center">
-          <label class="container"
-            >Муж.
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container"
-            >Жен.
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-        </div>
+        <label>Пароль</label>
+        <input
+          class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
+          required
+          v-model="password"
+          type="password"
+          placeholder="Пароль"
+        />
+        <hr />
+        <button
+          class="button w-32 mt-5 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 w-full rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
+          type="submit"
+        >
+          Войти
+        </button>
       </form>
     </div>
-    <h2 class="text-slate-500">Сумма всех заказов</h2>
-    <p class="text-3xl font-bold">12000 руб.</p>
+
+    <div v-else>
+      <div>
+        <h2 class="text-3xl font-bold">Личный кабинет</h2>
+
+        <div class="flex items-center text-center mt-5 gap-3">
+          <img src="/avatar.png" alt="Avatar" class="avatar w-20" />
+          <p class="text-2xl font-bold max-md:text-2xl">{{ userName }}</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="none"
+            class="cursor-pointer"
+            @click="handleClick"
+          >
+            <path
+              fill="#BDBDCB"
+              fill-rule="evenodd"
+              d="M12.407.258a.89.89 0 0 1 1.253 0l2.08 2.08a.885.885 0 0 1 0 1.253l-1.627 1.626-3.332-3.333L12.407.258ZM0 12.665l9.83-9.83 3.333 3.333-9.83 9.83H0v-3.333Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+
+        <div class="flex gap-3 mt-5">
+          <div class="flex flex-col">
+            <p class="text-slate-500">Телефон</p>
+            <p class="mt-1">+7 977 777-77-77</p>
+          </div>
+          <form class="flex flex-col">
+            <p class="text-slate-500">Пол</p>
+            <div class="flex gap-3 items-center">
+              <label class="container"
+                >Муж.
+                <input type="radio" name="radio" />
+                <span class="checkmark"></span>
+              </label>
+              <label class="container"
+                >Жен.
+                <input type="radio" name="radio" />
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </form>
+        </div>
+        <h2 class="text-slate-500">Сумма всех заказов</h2>
+        <p class="text-3xl font-bold">12000 руб.</p>
+        <button
+          class="button w-32 mt-5 border-solid border-2 border-red-500 rounded-md p-2 text-red-600 outline-none g-red-500 w-full rounded-xl transition disabled:bg-slate-400 hover:bg-red-600 hover:text-white active:bg-red-700"
+          @click="logout"
+        >
+          Выйти
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,8 +140,9 @@ const handleClick = () => {
 .container {
   display: block;
   position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
+  padding-left: 2.25rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.25rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
