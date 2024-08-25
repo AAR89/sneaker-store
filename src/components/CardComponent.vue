@@ -19,6 +19,7 @@ defineProps({
 
 const handleSelectSize = inject('handleSelectSize');
 let selectedSize = inject('selectedSize');
+let clearSelectedSize = inject('clearSelectedSize');
 
 const modalDrawer = ref(false);
 const openModalDrawer = () => {
@@ -28,7 +29,6 @@ const openModalDrawer = () => {
 
 const modalDrawerFalse = () => {
   modalDrawer.value = false;
-  selectedSize = '';
 };
 
 watch(selectedSize, () => {
@@ -39,7 +39,10 @@ watch(selectedSize, () => {
 <template>
   <div>
     <div
-      @mouseleave="modalDrawerFalse"
+      @mouseleave="
+        modalDrawerFalse();
+        clearSelectedSize();
+      "
       class="flex flex-col relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
     >
       <img
@@ -77,10 +80,11 @@ watch(selectedSize, () => {
           class="flex flex-wrap justify-center text-left gap-2 flex-wrap w-full h-auto max-md:justify-center"
         >
           <li
-            class="flex justify-center align-center text-gray-500 cursor-pointer relative bg-white border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl hover:border-lime-500"
+            class="flex justify-center align-center text-gray-500 cursor-pointer relative border border-slate-100 w-10 h-10 rounded-full p-2 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl hover:border-lime-500 active:bg-violet-700"
             v-for="item in sizes"
             :key="item.id"
             @click="handleSelectSize(item)"
+            :class="{ 'border-lime-500': selectedSize.value === item }"
           >
             {{ item }}
           </li>
@@ -98,3 +102,5 @@ watch(selectedSize, () => {
     </div>
   </div>
 </template>
+
+<style lang="" scoped></style>

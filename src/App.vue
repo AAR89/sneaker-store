@@ -19,27 +19,32 @@ const sizeSelection = (event) => {
   console.log(selectedSize.value);
 };
 
-provide('selectedSize', selectedSize);
-provide('handleSelectSize', handleSelectSize);
-// provide('openModalDrawer', openModalDrawer);
-// provide('modalDrawer', modalDrawer);
-
 const totalPrice = computed(() => cart.value.reduce((acc, item) => acc + item.price, 0));
 const vatPrice = computed(() => Math.round((totalPrice.value * 5) / 100));
 
 //Корзина начало
 
 const addToCart = (item) => {
-  console.log(selectedSize.value);
-  item.selectedSize = selectedSize.value;
-  cart.value.push(item);
-  item.isAdded = true;
-  selectedSize.value = [];
+  if (selectedSize.value.length === 0) {
+    alert('Пожалуйста выберете размер');
+    return;
+  } else {
+    console.log(selectedSize.value);
+    item.selectedSize = selectedSize.value;
+    cart.value.push(item);
+    item.isAdded = true;
+    selectedSize.value = [];
+  }
 };
 
 const removeFromCart = (item) => {
   cart.value.splice(cart.value.indexOf(item), 1);
   item.isAdded = false;
+};
+
+const clearSelectedSize = () => {
+  selectedSize.value = '';
+  console.log(selectedSize.value, 'selectedSize clear');
 };
 
 const closeDrawer = () => {
@@ -66,6 +71,11 @@ provide('cart', {
   addToCart,
   removeFromCart
 });
+
+provide('selectedSize', selectedSize);
+provide('handleSelectSize', handleSelectSize);
+provide('clearSelectedSize', clearSelectedSize);
+// provide('modalDrawer', modalDrawer);
 
 //Корзина конец
 </script>
