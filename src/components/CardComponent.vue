@@ -87,7 +87,10 @@ watch(selectedSize, () => {
             :key="size.id"
             class="flex justify-center items-center text-gray-500 cursor-pointer relative border border-slate-100 w-10 h-10 rounded-full p-2 transition hover:-translate-y-2 hover:shadow-xl hover:border-lime-500 choose_number"
             :class="{ 'choose_number-active': activeEl === size }"
-            @click="activeEl = size"
+            @click="
+              handleSelectSize(size);
+              activeEl = size;
+            "
           >
             {{ size }}
           </li>
