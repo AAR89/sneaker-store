@@ -20,6 +20,11 @@ const login = () => {
     isLogin.value = true;
     name.value = '';
     password.value = '';
+  } else if (phone.value === 'admin' && password.value === 'admin') {
+    isLogin.value = true;
+    name.value = 'Иван';
+    phone.value = '+7 777 77-77-77';
+    password.value = '';
   } else {
     alert('Неправильный login или пароль');
   }
@@ -129,6 +134,7 @@ const openPersonalPage = () => {
           v-show="!drawRegistration"
           class="button w-44 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
           type="submit"
+          @click="login"
         >
           Войти
         </button>
@@ -150,7 +156,7 @@ const openPersonalPage = () => {
 
         <div class="flex items-center text-center mt-5 gap-3">
           <img src="/avatar.png" alt="Avatar" class="avatar w-20" />
-          <p class="text-2xl font-bold max-md:text-2xl">{{ userName }}</p>
+          <p class="text-2xl font-bold max-md:text-2xl">{{ name }}</p>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -171,7 +177,7 @@ const openPersonalPage = () => {
         <div class="flex gap-3 mt-5">
           <div class="flex flex-col">
             <p class="text-slate-500">Телефон</p>
-            <p class="mt-1">+7 977 777-77-77</p>
+            <p class="mt-1">{{ phone }}</p>
           </div>
           <form class="flex flex-col">
             <p class="text-slate-500">Пол</p>
