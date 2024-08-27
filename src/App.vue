@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, provide, computed } from 'vue';
+import { ref, watch, provide, computed, inject } from 'vue';
 
 import HeaderComponent from './components/HeaderComponent.vue';
 import DrawerComponent from './components/DrawerComponent.vue';
@@ -59,6 +59,8 @@ watch(
   { deep: true }
 );
 
+const isLogin = inject('isLogin');
+
 provide('cart', {
   cart,
   totalPrice,
@@ -67,6 +69,8 @@ provide('cart', {
   addToCart,
   removeFromCart
 });
+
+provide('isLogin', isLogin);
 
 provide('selectedSize', selectedSize);
 provide('handleSelectSize', handleSelectSize);

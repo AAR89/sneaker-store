@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
 
 const userName = ref('Иван');
 
@@ -42,14 +42,6 @@ const closeRegistration = () => {
   drawRegistration.value = false;
 };
 
-const submitRegistration = () => {
-  if (name.value && email.value && phone.value && password.value) {
-    alert(`Данные успешно сохранены. Ваши данные: ${name.value}, ${email.value}, ${phone.value}`);
-  } else {
-    alert('Заполните все поля');
-  }
-};
-
 const openPersonalPage = () => {
   if (
     name.value !== '' &&
@@ -64,6 +56,8 @@ const openPersonalPage = () => {
     alert('Заполните все поля и пароль должен быть не менее 6 символов');
   }
 };
+
+provide('isLogin', isLogin);
 </script>
 
 <template>

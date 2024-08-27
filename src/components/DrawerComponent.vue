@@ -11,6 +11,7 @@ const props = defineProps({
 });
 
 const { cart, closeDrawer } = inject('cart');
+// const isLogin = inject('isLogin');
 
 const isCreating = ref(false);
 const orderId = ref(false);
