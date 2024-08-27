@@ -33,3 +33,5 @@ npm run build
 ```sh
 npm run lint
 ```
+phone: admin
+password: admin
