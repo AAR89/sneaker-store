@@ -13,6 +13,7 @@ const name = ref('');
 const email = ref('');
 const phone = ref('');
 const password = ref('');
+const drawRegistration = ref(false);
 
 const login = () => {
   if (name.value === 'admin' && password.value === 'admin') {
@@ -27,6 +28,37 @@ const login = () => {
 const logout = () => {
   isLogin.value = false;
 };
+
+const openRegistration = () => {
+  drawRegistration.value = true;
+};
+
+const closeRegistration = () => {
+  drawRegistration.value = false;
+};
+
+const submitRegistration = () => {
+  if (name.value && email.value && phone.value && password.value) {
+    alert(`Данные успешно сохранены. Ваши данные: ${name.value}, ${email.value}, ${phone.value}`);
+  } else {
+    alert('Заполните все поля');
+  }
+};
+
+const openPersonalPage = () => {
+  if (
+    name.value !== '' &&
+    password.value !== '' &&
+    email.value !== '' &&
+    password.value !== '' &&
+    password.value.length >= 6
+  ) {
+    alert('Вы успешно зарегистрированы!');
+    isLogin.value = true;
+  } else {
+    alert('Заполните все поля и пароль должен быть не менее 6 символов');
+  }
+};
 </script>
 
 <template>
@@ -34,46 +66,80 @@ const logout = () => {
     <div v-if="!isLogin">
       <form class="login flex flex-col items-start gap-2" @submit.prevent="login">
         <b>Добро пожаловать в <span class="uppercase">Sneaker shop</span></b>
-        <p>
-          Впервые здесь?
-          <b class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-lime-500"
-            >Зарегистрироваться</b
-          >
-        </p>
-        <!-- <label>Email</label>
-        <input required v-model="email" type="email || text" placeholder="Name" /> -->
-        <!-- <label>Телефон</label>
-        <input
-          type="tel"
-          v-model="phone"
-          id="phone"
-          name="phone"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          required
-          placeholder="+7 (___) ___-____"
-        /> -->
-        <label>Логин</label>
-        <input
-          class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
-          required
-          v-model="name"
-          type="text"
-          placeholder="Логин"
-        />
-        <label>Пароль</label>
-        <input
-          class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
-          required
-          v-model="password"
-          type="password"
-          placeholder="Пароль"
-        />
+        <div v-show="!drawRegistration">
+          <p>
+            Впервые здесь?
+            <b
+              class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-lime-500"
+              @click="openRegistration"
+              >Зарегистрироваться</b
+            >
+          </p>
+        </div>
+
+        <div v-show="drawRegistration">
+          <p>
+            Уже есть аккаунт?
+            <b
+              class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-lime-500"
+              @click="closeRegistration"
+              >Войти</b
+            >
+          </p>
+        </div>
+
+        <div class="flex flex-col mt-2 gap-3">
+          <input
+            v-show="drawRegistration"
+            class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
+            required
+            v-model="name"
+            type="text"
+            placeholder="Имя*"
+          />
+          <input
+            class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
+            type="tel"
+            v-model="phone"
+            id="phone"
+            name="phone"
+            required
+            placeholder="Телефон*"
+          />
+          <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
+          <input
+            v-show="drawRegistration"
+            class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
+            required
+            id="email"
+            v-model="email"
+            type="email"
+            placeholder="Почта*"
+          />
+          <input
+            class="border rounded-md py-2 px-4 outline-none focus:border-gray-400 transition"
+            required
+            v-model="password"
+            type="password"
+            placeholder="Пароль*"
+          />
+        </div>
         <hr />
         <button
-          class="button w-32 mt-5 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 w-full rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
+          v-show="!drawRegistration"
+          class="button w-44 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
           type="submit"
         >
           Войти
+        </button>
+
+        <button
+          v-show="drawRegistration"
+          class="button w-44 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
+          type="submit"
+          @click="openPersonalPage"
+        >
+          Зарегистрироваться
         </button>
       </form>
     </div>
