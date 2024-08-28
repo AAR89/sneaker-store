@@ -68,7 +68,7 @@ provide('isLogin', isLogin);
   <div>
     <div v-if="!isLogin">
       <form class="login flex flex-col items-start gap-2" @submit.prevent="login">
-        <b>Добро пожаловать в <span class="uppercase">Sneaker shop</span></b>
+        <b>Добро пожаловать в <span class="uppercase">KICKS CREW</span></b>
         <div v-show="!drawRegistration">
           <p>
             Впервые здесь?
