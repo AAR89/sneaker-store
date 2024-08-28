@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, inject } from 'vue';
+import { ref, computed, inject, watch } from 'vue';
 import axios from 'axios';
 import CartListItemComp from './CartListItemComp.vue';
 import DrawerHeadComp from './DrawerHeadComp.vue';
@@ -11,7 +11,7 @@ const props = defineProps({
 });
 
 const { cart, closeDrawer } = inject('cart');
-// const isLogin = inject('isLogin');
+const isLogin = ref(inject('isLogin'));
 
 const isCreating = ref(false);
 const orderId = ref(false);
@@ -37,6 +37,10 @@ const createOrder = async () => {
 
 const cartIsEmpty = computed(() => cart.value.length === 0);
 const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value);
+
+watch(isLogin, () => {
+  console.log(isLogin);
+});
 </script>
 
 <template>

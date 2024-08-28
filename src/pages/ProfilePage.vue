@@ -32,6 +32,10 @@ const login = () => {
 
 const logout = () => {
   isLogin.value = false;
+  name.value = '';
+  email.value = '';
+  phone.value = '';
+  password.value = '';
 };
 
 const openRegistration = () => {
