@@ -56,13 +56,14 @@ const modalDrawerFalse = () => {
         <div class="flex gap-4 justify-center items-center">
           <div class="flex flex-col">
             <span class="text-slate-400">Цена:</span>
-            <div class="flex justify-between gap-2 text-m">
-              <b class="flex flex-nowrap">{{ price }} руб.</b>
-              <b class="text-green-500" v-if="isAdded">Товар в корзине</b>
+            <div class="flex justify-between gap-1 text-m items-center">
+              <b class="flex flex-nowrap max-md:text-xs">{{ price }} руб.</b>
+              <b class="text-green-500 text-xs" v-if="isAdded">Товар в корзине</b>
             </div>
           </div>
         </div>
         <img
+          class="w-6"
           @click="openModalDrawer"
           :src="!isAdded ? './plus.svg' : './checked.svg'"
           alt="Plus logo"
