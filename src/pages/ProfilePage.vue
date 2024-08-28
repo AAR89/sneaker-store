@@ -73,7 +73,7 @@ provide('isLogin', isLogin);
           <p>
             Впервые здесь?
             <b
-              class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-lime-500"
+              class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-green-500"
               @click="openRegistration"
               >Зарегистрироваться</b
             >
@@ -84,7 +84,7 @@ provide('isLogin', isLogin);
           <p>
             Уже есть аккаунт?
             <b
-              class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-lime-500"
+              class="cursor-pointer border-b-2 border-black hover:border-0 hover:text-green-500"
               @click="closeRegistration"
               >Войти</b
             >
@@ -130,7 +130,7 @@ provide('isLogin', isLogin);
         <hr />
         <button
           v-show="!drawRegistration"
-          class="button w-44 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
+          class="button w-44 border-solid border-2 border-green-500 rounded-md p-2 text-green-600 outline-none g-green-500 rounded-xl transition disabled:bg-slate-400 hover:bg-green-600 hover:text-white active:bg-green-700"
           type="submit"
           @click="login"
         >
@@ -139,7 +139,7 @@ provide('isLogin', isLogin);
 
         <button
           v-show="drawRegistration"
-          class="button w-44 border-solid border-2 border-lime-500 rounded-md p-2 text-lime-600 outline-none g-lime-500 rounded-xl transition disabled:bg-slate-400 hover:bg-lime-600 hover:text-white active:bg-lime-700"
+          class="button w-44 border-solid border-2 border-green-500 rounded-md p-2 text-green-600 outline-none g-green-500 rounded-xl transition disabled:bg-slate-400 hover:bg-green-600 hover:text-white active:bg-green-700"
           type="submit"
           @click="openPersonalPage"
         >

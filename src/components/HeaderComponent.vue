@@ -12,7 +12,7 @@ const emit = defineEmits('openDrawer');
   >
     <RouterLink to="/sneaker-store/">
       <div class="flex items-center gap-4">
-        <img src="/logo.png" alt="Logo" class="w-10" />
+        <img src="/logo.png" alt="Logo" class="w-20" />
         <div>
           <h2 class="text-xl font-bold uppercase">KICKS CREW</h2>
           <p class="text-slate-400">Магазин кроссовок</p>

@@ -13,7 +13,7 @@ defineProps({
   onClickFavorite: Function,
   modelValue: {
     type: Number,
-    required: true
+    requigreen: true
   }
 });
 
@@ -58,7 +58,7 @@ const modalDrawerFalse = () => {
             <span class="text-slate-400">Цена:</span>
             <div class="flex justify-between gap-2 text-m">
               <b class="flex flex-nowrap">{{ price }} руб.</b>
-              <b class="text-lime-500" v-if="isAdded">Товар в корзине</b>
+              <b class="text-green-500" v-if="isAdded">Товар в корзине</b>
             </div>
           </div>
         </div>
@@ -79,7 +79,7 @@ const modalDrawerFalse = () => {
           <li
             v-for="size in sizes"
             :key="size.id"
-            class="flex justify-center items-center text-gray-500 cursor-pointer relative border border-slate-100 w-10 h-10 rounded-full p-2 transition hover:-translate-y-2 hover:shadow-xl hover:border-lime-500 choose_number"
+            class="flex justify-center items-center text-gray-500 cursor-pointer relative border border-slate-100 w-10 h-10 rounded-full p-2 transition hover:-translate-y-2 hover:shadow-xl hover:border-green-500 choose_number"
             :class="{ 'choose_number-active': activeEl === size }"
             @click="
               handleSelectSize(size);
@@ -90,7 +90,7 @@ const modalDrawerFalse = () => {
           </li>
         </ul>
         <button
-          class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
+          class="mt-4 bg-green-500 w-full rounded-xl py-3 text-white transition disabled:bg-slate-400 hover:bg-green-600 active:bg-green-700 cursor-pointer"
           @click="
             onClickAdd();
             modalDrawerFalse();
@@ -105,7 +105,7 @@ const modalDrawerFalse = () => {
 
 <style scoped>
 .choose_number-active {
-  background-color: rgb(132 204 22);
+  background-color: rgb(34 197 94);
   color: rgb(248 250 252);
 }
 </style>

@@ -17,7 +17,7 @@ const { closeDrawer } = inject('cart');
     <p class="text-gray-400 mt-2">{{ description }}</p>
     <button
       @click="closeDrawer"
-      class="flex items-center justify-center gap-3 mt-4 bg-lime-500 w-auto rounded-xl py-3 px-6 text-white transition disabled:bg-slate-400 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
+      class="flex items-center justify-center gap-3 mt-4 bg-green-500 w-auto rounded-xl py-3 px-6 text-white transition disabled:bg-slate-400 hover:bg-green-600 active:bg-green-700 cursor-pointer"
     >
       <svg
         class="cursor-pointer rotate-180 hover:transition hover:-translate-x-1"
