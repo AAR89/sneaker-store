@@ -196,7 +196,7 @@ provide('isLogin', isLogin);
         <h2 class="text-slate-500">Сумма всех заказов</h2>
         <p class="text-3xl font-bold">12000 руб.</p>
         <button
-          class="button w-32 mt-5 border-solid border-2 border-red-500 rounded-md p-2 text-red-600 outline-none g-red-500 w-full rounded-xl transition disabled:bg-slate-400 hover:bg-red-600 hover:text-white active:bg-red-700"
+          class="button w-44 mt-5 border-solid border-2 border-red-500 rounded-md p-2 text-red-600 outline-none g-red-500 rounded-xl transition disabled:bg-slate-400 hover:bg-red-600 hover:text-white active:bg-red-700"
           @click="logout"
         >
           Выйти
