@@ -58,16 +58,18 @@ const modalDrawerFalse = () => {
             <span class="text-slate-400">Цена:</span>
             <div class="flex justify-between gap-1 text-m items-center">
               <b class="flex flex-nowrap max-md:text-xs">{{ price }} руб.</b>
-              <b class="text-green-500 text-xs" v-if="isAdded">Товар в корзине</b>
             </div>
           </div>
         </div>
-        <img
-          class="w-6"
-          @click="openModalDrawer"
-          :src="!isAdded ? './plus.svg' : './checked.svg'"
-          alt="Plus logo"
-        />
+        <div class="flex items-center gap-2 max-md:items-end">
+          <b class="flex text-green-500 text-xs" v-if="isAdded">Товар в корзине</b>
+          <img
+            class="w-6"
+            @click="openModalDrawer"
+            :src="!isAdded ? './plus.svg' : './checked.svg'"
+            alt="Plus logo"
+          />
+        </div>
       </div>
       <div
         v-show="modalDrawer && !isAdded"
